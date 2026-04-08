@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col select-none">
+  <div class="h-screen overflow-hidden bg-slate-950 text-slate-100 font-sans flex flex-col select-none">
 
     <!-- Header -->
-    <header class="border-b border-slate-800 px-6 py-3 flex items-center justify-between flex-shrink-0">
+    <header class="sticky top-0 z-30 bg-slate-950 border-b border-slate-800 px-6 py-3 flex items-center justify-between flex-shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center">
           <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -21,11 +21,11 @@
       </div>
     </header>
 
-    <!-- Body: 3 columns -->
+    <!-- Body -->
     <div class="flex flex-1 overflow-hidden">
 
       <!-- COL 1 — Inbox -->
-      <aside class="w-[260px] flex-shrink-0 border-r border-slate-800 flex flex-col overflow-hidden">
+      <aside class="w-[300px] flex-shrink-0 border-r border-slate-800 flex flex-col overflow-hidden">
         <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between">
           <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Inbox</span>
           <span class="text-[10px] font-medium bg-blue-600 text-white rounded-full px-1.5 py-0.5">{{ leads.length }}</span>
@@ -53,84 +53,77 @@
         </div>
       </aside>
 
-      <!-- COL 2 — Lead detail -->
-      <section class="w-[380px] flex-shrink-0 border-r border-slate-800 flex flex-col overflow-hidden">
-        <div v-if="selectedLead" class="flex-1 overflow-y-auto">
-          <!-- Lead header -->
-          <div class="px-5 py-4 border-b border-slate-800">
-            <div class="flex items-start justify-between gap-3 mb-1">
-              <h2 class="text-base font-bold text-slate-100">{{ selectedLead.name }}</h2>
-              <span class="inline-flex items-center gap-1 text-[10px] font-medium text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded-full flex-shrink-0">
-                <span class="w-1 h-1 rounded-full bg-amber-400"></span>
-                New
-              </span>
+      <!-- Main panel -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Lead detail card -->
+        <section class="sticky top-0 z-20 flex-shrink-0 bg-slate-950 px-6 pt-5 pb-4 border-b border-slate-900">
+          <div v-if="selectedLead" class="bg-slate-900 border border-slate-800 rounded-lg p-5 shadow-2xl shadow-slate-950/30">
+            <div class="flex items-start gap-6">
+              <div class="w-[240px] flex-shrink-0">
+                <div class="flex items-start justify-between gap-3 mb-1">
+                  <h2 class="text-base font-bold text-slate-100">{{ selectedLead.name }}</h2>
+                  <span class="inline-flex items-center gap-1 text-[10px] font-medium text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded-full flex-shrink-0">
+                    <span class="w-1 h-1 rounded-full bg-amber-400"></span>
+                    New
+                  </span>
+                </div>
+                <p class="text-xs text-slate-500">Via website contact form · {{ selectedLead.date }}</p>
+                <p class="text-[10px] text-slate-600 mt-0.5 font-mono">REF-2024-{{ selectedLead.ref }}</p>
+              </div>
+
+              <div class="grid grid-cols-4 gap-x-5 gap-y-3 flex-1 min-w-0">
+                <LeadField label="Company" :value="selectedLead.company" />
+                <LeadField label="Team size" :value="selectedLead.teamSize" />
+                <LeadField label="Revenue range" :value="selectedLead.revenue" />
+                <LeadField label="Budget" :value="selectedLead.budget" />
+                <div class="col-span-3">
+                  <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Message</p>
+                  <p class="text-sm text-slate-300 leading-relaxed">
+                    "{{ selectedLead.message }}"
+                  </p>
+                </div>
+                <LeadField label="Urgency" :value="selectedLead.urgency" />
+              </div>
             </div>
-            <p class="text-xs text-slate-500">Via website contact form · {{ selectedLead.date }}</p>
-            <p class="text-[10px] text-slate-600 mt-0.5 font-mono">REF-2024-{{ selectedLead.ref }}</p>
           </div>
 
-          <!-- Fields -->
-          <div class="px-5 py-4 flex flex-col gap-4">
-            <div class="grid grid-cols-2 gap-4">
-              <LeadField label="Company" :value="selectedLead.company" />
-              <LeadField label="Team size" :value="selectedLead.teamSize" />
-              <LeadField label="Revenue range" :value="selectedLead.revenue" />
-              <LeadField label="Budget" :value="selectedLead.budget" />
+          <div v-else class="bg-slate-900 border border-slate-800 rounded-lg px-5 py-8 text-center">
+            <p class="text-sm text-slate-600">Select a submission</p>
+          </div>
+        </section>
+
+        <!-- AI output -->
+        <section class="flex-1 flex flex-col overflow-y-auto px-6 pt-5 pb-6 gap-4">
+        <div class="flex items-center justify-between gap-4 h-10 flex-shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">AI Qualification</span>
+            <div v-if="analysisState === 'analyzing'" class="flex items-center gap-1 ml-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style="animation-delay:0ms"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style="animation-delay:150ms"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style="animation-delay:300ms"></span>
             </div>
-
-            <div class="border-t border-slate-800"></div>
-
-            <div>
-              <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">Message</p>
-              <p class="text-sm text-slate-300 leading-relaxed bg-slate-800/40 rounded-lg px-4 py-3 border border-slate-700/40 italic">
-                "{{ selectedLead.message }}"
-              </p>
-            </div>
-
-            <div class="border-t border-slate-800"></div>
-
-            <LeadField label="Urgency" :value="selectedLead.urgency" />
           </div>
 
-          <!-- Action button -->
-          <div class="px-5 pb-5">
-            <button
-              @click="startAnalysis"
-              :disabled="analysisState !== 'idle'"
-              class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-              :class="analysisState === 'idle'
-                ? 'bg-blue-600 hover:bg-blue-500 text-white cursor-pointer'
-                : 'bg-slate-800 text-slate-500 cursor-not-allowed'"
-            >
-              <svg v-if="analysisState === 'idle'" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <svg v-else-if="analysisState === 'analyzing'" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-              </svg>
-              <svg v-else class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>{{ analysisState === 'idle' ? 'Analyze lead' : analysisState === 'analyzing' ? 'Analyzing…' : 'Analysis complete' }}</span>
-            </button>
-          </div>
-        </div>
-
-        <div v-else class="flex-1 flex items-center justify-center">
-          <p class="text-sm text-slate-600">Select a submission</p>
-        </div>
-      </section>
-
-      <!-- COL 3 — AI output -->
-      <section class="flex-1 flex flex-col overflow-y-auto px-6 py-5 gap-4">
-        <div class="flex items-center gap-2 h-6 flex-shrink-0">
-          <span class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">AI Qualification</span>
-          <div v-if="analysisState === 'analyzing'" class="flex items-center gap-1 ml-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style="animation-delay:0ms"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style="animation-delay:150ms"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style="animation-delay:300ms"></span>
-          </div>
+          <button
+            @click="startAnalysis"
+            :disabled="analysisState !== 'idle'"
+            class="flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200"
+            :class="analysisState === 'idle'
+              ? 'bg-blue-600 hover:bg-blue-500 text-white cursor-pointer'
+              : 'bg-slate-800 text-slate-500 cursor-not-allowed'"
+          >
+            <svg v-if="analysisState === 'idle'" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <svg v-else-if="analysisState === 'analyzing'" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            <svg v-else class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>{{ analysisState === 'idle' ? 'Analyze lead' : analysisState === 'analyzing' ? 'Analyzing...' : 'Analysis complete' }}</span>
+          </button>
         </div>
 
         <!-- Empty -->
@@ -147,43 +140,57 @@
         </div>
 
         <!-- Skeleton -->
-        <div v-else-if="analysisState === 'analyzing'" class="flex flex-col gap-4">
-          <div v-for="i in 4" :key="i" class="bg-slate-900 border border-slate-800 rounded-xl p-5 animate-pulse_soft">
-            <div class="h-2.5 w-24 bg-slate-800 rounded mb-3"></div>
+        <div v-else-if="analysisState === 'analyzing'" class="grid grid-cols-12 gap-4">
+          <div
+            v-for="i in 6"
+            :key="i"
+            class="bg-slate-900 border border-slate-800 rounded-lg p-5 animate-pulse_soft"
+            :class="[
+              i === 1 ? 'col-span-5 min-h-[150px]' : '',
+              i === 2 ? 'col-span-7 min-h-[150px]' : '',
+              i === 3 ? 'col-span-8 min-h-[150px]' : '',
+              i === 4 ? 'col-span-4 row-span-2 min-h-[300px]' : '',
+              i === 5 ? 'col-span-4 min-h-[120px]' : '',
+              i === 6 ? 'col-span-4 min-h-[120px]' : '',
+            ]"
+          >
+            <div class="h-2.5 w-24 bg-slate-800 rounded mb-4"></div>
             <div class="flex flex-col gap-2">
               <div class="h-2.5 bg-slate-800 rounded w-full"></div>
               <div class="h-2.5 bg-slate-800 rounded" :class="i === 1 ? 'w-1/2' : i === 2 ? 'w-5/6' : 'w-4/6'"></div>
+              <div v-if="i === 4" class="h-2.5 bg-slate-800 rounded w-3/4"></div>
             </div>
           </div>
         </div>
 
         <!-- Results -->
-        <div v-else class="flex flex-col gap-4">
+        <div v-else class="grid grid-cols-12 auto-rows-min gap-4">
 
           <!-- Score -->
-          <div class="bg-slate-900 border border-emerald-500/25 rounded-xl p-5 animate-fadeInUp" style="animation-delay:0ms">
+          <div class="col-span-5 bg-slate-900 border border-emerald-500/25 rounded-lg p-5 animate-fadeInUp" style="animation-delay:0ms">
             <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-3">Qualification score</p>
-            <div class="flex items-center gap-4">
-              <div class="flex items-center gap-2">
-                <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-                <span class="text-xl font-bold text-emerald-400">High fit</span>
+            <div class="flex items-end justify-between gap-4">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                  <span class="text-2xl font-bold text-emerald-400">High fit</span>
+                </div>
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-red-500/12 text-red-400 border border-red-500/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
+                  Priority: High
+                </span>
               </div>
-              <div class="h-5 w-px bg-slate-700"></div>
-              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-red-500/12 text-red-400 border border-red-500/20">
-                <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
-                Priority: High
-              </span>
-              <div class="ml-auto text-right">
+              <div class="text-right">
                 <p class="text-[10px] text-slate-500">Score</p>
-                <p class="text-xl font-bold text-slate-100">91<span class="text-slate-500 text-xs font-normal">/100</span></p>
+                <p class="text-4xl font-bold text-slate-100">91<span class="text-slate-500 text-sm font-normal">/100</span></p>
               </div>
             </div>
           </div>
 
           <!-- Summary -->
-          <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 animate-fadeInUp" style="animation-delay:80ms">
+          <div class="col-span-7 bg-slate-900 border border-slate-800 rounded-lg p-5 animate-fadeInUp" style="animation-delay:80ms">
             <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-3">Qualification summary</p>
-            <ul class="flex flex-col gap-2">
+            <ul class="grid grid-cols-2 gap-x-5 gap-y-3">
               <li v-for="(item, i) in summary" :key="i" class="flex items-start gap-2.5 text-sm text-slate-300">
                 <svg class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
@@ -194,7 +201,7 @@
           </div>
 
           <!-- Key signals -->
-          <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 animate-fadeInUp" style="animation-delay:160ms">
+          <div class="col-span-8 bg-slate-900 border border-slate-800 rounded-lg p-5 animate-fadeInUp" style="animation-delay:160ms">
             <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-3">Key signals</p>
             <div class="flex flex-wrap gap-2">
               <span
@@ -211,7 +218,7 @@
           </div>
 
           <!-- Next actions -->
-          <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 animate-fadeInUp" style="animation-delay:240ms">
+          <div class="col-span-4 row-span-2 bg-slate-900 border border-slate-800 rounded-lg p-5 animate-fadeInUp" style="animation-delay:240ms">
             <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-3">Suggested next action</p>
             <div class="flex flex-col gap-2">
               <div v-for="(action, i) in nextActions" :key="i"
@@ -224,8 +231,27 @@
             </div>
           </div>
 
+          <div class="col-span-3 bg-slate-900 border border-slate-800 rounded-lg p-5 animate-fadeInUp" style="animation-delay:320ms">
+            <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-3">Buying intent</p>
+            <p class="text-2xl font-bold text-slate-100 mb-2">Active</p>
+            <p class="text-sm text-slate-400 leading-relaxed">Clear pain point, budget stated, and timing this month.</p>
+          </div>
+
+          <div class="col-span-3 bg-slate-900 border border-slate-800 rounded-lg p-5 animate-fadeInUp" style="animation-delay:400ms">
+            <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-3">Budget fit</p>
+            <p class="text-2xl font-bold text-blue-300 mb-2">In range</p>
+            <p class="text-sm text-slate-400 leading-relaxed">Monthly budget matches standard CFO advisory scope.</p>
+          </div>
+
+          <div class="col-span-2 bg-slate-900 border border-slate-800 rounded-lg p-5 animate-fadeInUp" style="animation-delay:480ms">
+            <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-3">Risk</p>
+            <p class="text-2xl font-bold text-amber-300 mb-2">Low</p>
+            <p class="text-sm text-slate-400 leading-relaxed">Need is specific, not exploratory.</p>
+          </div>
+
         </div>
-      </section>
+        </section>
+      </main>
     </div>
 
     <!-- Telegram notification -->
@@ -260,15 +286,15 @@
             <div class="mb-2">
               <span class="text-[10px] font-bold text-red-400 uppercase tracking-wider">● HIGH PRIORITY</span>
             </div>
-            <p class="text-sm font-semibold text-white mb-2">New qualified lead</p>
+            <p class="text-sm font-semibold text-white mb-2">New qualified lead: {{ selectedLead.name }}</p>
             <div class="flex flex-col gap-1">
-              <p class="text-xs text-blue-200"><span class="text-white/50">Company:</span> Atelier Norte — 14 employees</p>
-              <p class="text-xs text-blue-200"><span class="text-white/50">Need:</span> Reporting + cash flow support</p>
-              <p class="text-xs text-blue-200"><span class="text-white/50">Budget:</span> €2,000–€3,000/month ✓</p>
-              <p class="text-xs text-blue-200"><span class="text-white/50">Urgency:</span> Start this month</p>
+              <p class="text-xs text-blue-200"><span class="text-white/50">Company:</span> {{ selectedLead.company }} — {{ selectedLead.teamSize }}</p>
+              <p class="text-xs text-blue-200"><span class="text-white/50">Need:</span> {{ notificationNeed }}</p>
+              <p class="text-xs text-blue-200"><span class="text-white/50">Budget:</span> {{ selectedLead.budget }} <span v-if="selectedLead.budget !== 'Not specified'">✓</span></p>
+              <p class="text-xs text-blue-200"><span class="text-white/50">Urgency:</span> {{ selectedLead.urgency }}</p>
             </div>
             <div class="mt-2.5 pt-2.5 border-t border-white/10">
-              <p class="text-xs text-white/70"><span class="font-medium text-white/90">Action:</span> Route to senior advisor</p>
+              <p class="text-xs text-white/70"><span class="font-medium text-white/90">Action:</span> {{ notificationAction }}</p>
             </div>
           </div>
         </div>
@@ -287,7 +313,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const analysisState = ref('idle')
 const showTelegram = ref(false)
@@ -353,9 +379,102 @@ const leads = [
     preview: 'Hi, I saw your services and was wondering if…',
     read: true,
   },
+  {
+    id: 5,
+    name: 'Julia Hofmann',
+    company: 'Nord Kitchen',
+    time: 'Thu',
+    date: 'Thursday, 10:18',
+    ref: '1043',
+    teamSize: '21 employees',
+    revenue: '€2M – €3M',
+    budget: '€2,500 – €4,000/mo',
+    urgency: 'Need help before opening our second location next quarter.',
+    message: 'We are expanding to a second restaurant and need better cost control, weekly dashboards and cash planning before signing the lease.',
+    preview: 'We are expanding to a second restaurant and need…',
+    read: false,
+  },
+  {
+    id: 6,
+    name: 'Nicolas Bérard',
+    company: 'Luma Dental',
+    time: 'Wed',
+    date: 'Wednesday, 15:36',
+    ref: '1042',
+    teamSize: '18 employees',
+    revenue: '€1.8M – €2.4M',
+    budget: '€1,500 – €2,500/mo',
+    urgency: 'We want to make a decision this week.',
+    message: 'Our clinic is profitable but cash flow is unpredictable. We need a clearer view on payroll, equipment financing and monthly reporting.',
+    preview: 'Our clinic is profitable but cash flow is unpredictable…',
+    read: true,
+  },
+  {
+    id: 7,
+    name: 'Sofia Romano',
+    company: 'Casa Verde',
+    time: 'Tue',
+    date: 'Tuesday, 08:55',
+    ref: '1041',
+    teamSize: '11 employees',
+    revenue: '€900K – €1.3M',
+    budget: '€1,200 – €1,800/mo',
+    urgency: 'Before the end of the month.',
+    message: 'We sell home goods online and margins are getting harder to track. We need help with inventory reporting and a cleaner finance rhythm.',
+    preview: 'We sell home goods online and margins are getting…',
+    read: true,
+  },
+  {
+    id: 8,
+    name: 'Elliot Price',
+    company: 'BrightLoop Energy',
+    time: 'Apr 2',
+    date: 'April 2, 13:20',
+    ref: '1040',
+    teamSize: '27 employees',
+    revenue: '€4M – €6M',
+    budget: '€5,000 – €7,000/mo',
+    urgency: 'Investor reporting package due in 4 weeks.',
+    message: 'We need support preparing investor reporting, refining burn forecast and setting up a monthly board finance pack.',
+    preview: 'We need support preparing investor reporting, refining burn…',
+    read: true,
+  },
+  {
+    id: 9,
+    name: 'Marina Soler',
+    company: 'Papel & Co',
+    time: 'Mar 29',
+    date: 'March 29, 17:48',
+    ref: '1039',
+    teamSize: '5 employees',
+    revenue: '€300K – €450K',
+    budget: '€600 – €900/mo',
+    urgency: 'No rush, just comparing options.',
+    message: 'We run a small stationery brand and would like occasional guidance around pricing and tax planning, maybe quarterly.',
+    preview: 'We run a small stationery brand and would like…',
+    read: true,
+  },
+  {
+    id: 10,
+    name: 'Omar Benali',
+    company: 'Atlas Repair',
+    time: 'Mar 27',
+    date: 'March 27, 12:11',
+    ref: '1038',
+    teamSize: '44 employees',
+    revenue: '€5M – €7M',
+    budget: '€3,500 – €5,000/mo',
+    urgency: 'Need a new reporting process before hiring a finance manager.',
+    message: 'We manage repair teams across three cities and our financial reporting is too slow. We need help building reliable monthly close and KPI tracking.',
+    preview: 'We manage repair teams across three cities and our…',
+    read: true,
+  },
 ]
 
 const selectedLead = ref(leads[0])
+
+const notificationNeed = computed(() => summarizeNeed(selectedLead.value))
+const notificationAction = computed(() => suggestAction(selectedLead.value))
 
 const summary = [
   'Growing company with operational complexity',
@@ -388,10 +507,61 @@ function selectLead(lead) {
 
 async function startAnalysis() {
   if (analysisState.value !== 'idle') return
+  const analyzedLead = selectedLead.value
   analysisState.value = 'analyzing'
   await new Promise(r => setTimeout(r, 2200))
+  if (selectedLead.value.id !== analyzedLead.id) return
   analysisState.value = 'done'
   await new Promise(r => setTimeout(r, 600))
+  if (selectedLead.value.id !== analyzedLead.id) return
   showTelegram.value = true
+}
+
+function summarizeNeed(lead) {
+  const message = lead.message.toLowerCase()
+
+  if (message.includes('investor') || message.includes('series a') || message.includes('board')) {
+    return 'Investor reporting + finance pack'
+  }
+
+  if (message.includes('inventory') || message.includes('margins')) {
+    return 'Margin tracking + inventory reporting'
+  }
+
+  if (message.includes('restaurant') || message.includes('location') || message.includes('cost control')) {
+    return 'Expansion planning + cost control'
+  }
+
+  if (message.includes('cash flow') || message.includes('cash')) {
+    return 'Cash flow visibility + reporting'
+  }
+
+  if (message.includes('monthly close') || message.includes('kpi')) {
+    return 'Monthly close + KPI tracking'
+  }
+
+  if (message.includes('pricing') || message.includes('tax')) {
+    return 'Pricing guidance + tax planning'
+  }
+
+  return 'Financial guidance + reporting support'
+}
+
+function suggestAction(lead) {
+  if (lead.budget === 'Not specified') {
+    return 'Clarify budget before advisor routing'
+  }
+
+  const urgency = lead.urgency.toLowerCase()
+
+  if (urgency.includes('week') || urgency.includes('month') || urgency.includes('board') || urgency.includes('due')) {
+    return 'Route to senior advisor'
+  }
+
+  if (urgency.includes('no rush') || urgency.includes('exploring') || urgency.includes('browsing')) {
+    return 'Add to nurture sequence'
+  }
+
+  return 'Schedule discovery call'
 }
 </script>

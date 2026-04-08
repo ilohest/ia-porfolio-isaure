@@ -1,18 +1,21 @@
 <template>
   <div class="space-y-3">
-    <div class="flex items-center gap-2">
-      <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider">{{ title }}</span>
-      <span v-if="badge" class="text-[9px] font-medium px-1.5 py-0.5 rounded"
-        :class="{
-          'bg-emerald-500/15 text-emerald-400 border border-emerald-500/25': badgeColor === 'green',
-          'bg-indigo-500/15 text-indigo-400 border border-indigo-500/25': badgeColor === 'blue',
-          'bg-violet-500/15 text-violet-400 border border-violet-500/25': badgeColor === 'purple',
-          'bg-white/[0.05] text-white/35 border border-white/10': badgeColor === 'gray',
-        }">
-        {{ badge }}
-      </span>
+    <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="section-title text-[11px] font-semibold text-[#1f2021]/72 uppercase tracking-wider">{{ title }}</span>
+        <span v-if="badge" class="text-[9px] font-medium px-1.5 py-0.5 rounded"
+          :class="{
+            'bg-[#ffffff] text-[#982121] border border-[#982121]/20': badgeColor === 'green',
+            'bg-[#ffffff] text-[#982121] border border-[#982121]/20': badgeColor === 'blue',
+            'bg-[#ffffff] text-[#982121] border border-[#982121]/20': badgeColor === 'purple',
+            'bg-[#ffffff] text-[#1f2021]/55 border border-[#1f2021]/10': badgeColor === 'gray',
+          }">
+          {{ badge }}
+        </span>
+      </div>
+      <slot name="action" />
     </div>
-    <div class="bg-white/[0.025] border border-white/[0.06] rounded-lg p-3.5">
+    <div class="bg-[#ffffff] border border-[#9f8989]/22 rounded-lg p-3.5 shadow-[0_10px_30px_rgba(31,32,33,0.04)]">
       <slot />
     </div>
   </div>
