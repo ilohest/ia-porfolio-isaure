@@ -12,3 +12,6 @@ dist/
 # Astro
 .astro/
 src/env.d.ts
+
+# Large local media
+public/media/use-cases/*.mov
