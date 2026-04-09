@@ -8,3 +8,7 @@ dist/
 
 .claude/
 *.local
+
+# Astro
+.astro/
+src/env.d.ts

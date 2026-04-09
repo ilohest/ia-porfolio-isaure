@@ -1,0 +1,610 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/walkthroughs.css';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'AI Product Walkthroughs — Isaure Lohest',
+    url: 'https://ai.isaure-lohest.com/walkthroughs/',
+    description:
+      'Interactive video walkthroughs of AI integration projects across legal routing, document analysis, lead scoring, and structured content ingestion.',
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://ai.isaure-lohest.com/',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'AI product walkthroughs',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Smart request routing and triage',
+        url: 'https://ai.isaure-lohest.com/walkthroughs/#legal-routing',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Uploaded document analysis',
+        url: 'https://ai.isaure-lohest.com/walkthroughs/#document-analysis',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Lead scoring and CRM enrichment',
+        url: 'https://ai.isaure-lohest.com/walkthroughs/#lead-qualification',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'Unstructured content into structured product data',
+        url: 'https://ai.isaure-lohest.com/walkthroughs/#recipe-ingestion',
+      },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="AI Product Walkthroughs — Isaure Lohest"
+  description="Interactive video walkthroughs of real AI integration projects: document analysis, lead scoring, legal routing, and structured content ingestion."
+  canonicalUrl="https://ai.isaure-lohest.com/walkthroughs/"
+  defaultPalette="warm"
+  structuredData={structuredData}
+>
+<nav id="nav">
+      <a href="/" class="nav-logo">Isaure Lohest</a>
+      <div class="nav-links">
+        <a href="/#what">Services</a>
+        <a href="/#cases">Use cases</a>
+        <a href="/#process">Process</a>
+        <a href="/walkthroughs/" class="is-active">Walkthroughs</a>
+        <a href="mailto:isaure.lohest@gmail.com" class="nav-cta">Let's talk</a>
+      </div>
+    </nav>
+    <button
+      type="button"
+      class="palette-toggle"
+      id="palette-toggle"
+      aria-label="Switch to dark palette"
+      aria-pressed="true"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v2.2" />
+        <path d="M12 18.8V21" />
+        <path d="M3 12h2.2" />
+        <path d="M18.8 12H21" />
+        <path d="M5.64 5.64 7.2 7.2" />
+        <path d="M16.8 16.8l1.56 1.56" />
+        <path d="M18.36 5.64 16.8 7.2" />
+        <path d="M7.2 16.8l-1.56 1.56" />
+        <path d="M12 8.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6z" />
+      </svg>
+    </button>
+    <a
+      href="/"
+      class="corner-wordmark"
+      aria-label="Back to portfolio"
+    >
+      <svg viewBox="0 0 560 230" role="img">
+        <defs>
+          <path
+            id="corner-wordmark-path"
+            d="M 58 560 L 58 480 C 58 400 58 300 58 220 C 58 220 58 220 58 220 L 58 220"
+          />
+        </defs>
+        <text>
+          <textPath href="#corner-wordmark-path" startOffset="0%">
+            isaure lohest.
+          </textPath>
+        </text>
+      </svg>
+    </a>
+
+    <section class="hero">
+      <span class="hero-kicker">Selected demos</span>
+      <h1>
+        AI product walkthroughs: less catalogue, more
+        <span class="pulse-proof">product proof</span>.
+      </h1>
+    </section>
+
+    <main class="walkthroughs">
+      <section class="walkthrough-case" id="legal-routing">
+        <div class="case-meta">
+          <span class="case-index">01 · Workflow · Routing</span>
+          <h2>Smart request routing and triage</h2>
+          <p>
+            A legal intake flow that reads the incoming case, evaluates urgency,
+            and routes it to the most relevant lawyer.
+          </p>
+        </div>
+        <div class="case-canvas">
+          <div class="video-stage">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="/media/use-cases/03-legal-case-routing.mov" />
+            </video>
+          </div>
+          <div class="annotation-layer">
+            <div class="scribble-note note-1a">
+              <span>urgency gets surfaced before anyone manually sorts</span>
+            </div>
+            <div class="scribble-note note-1b">
+              <span
+                >expertise matching turns a generic intake into a smart
+                assignment</span
+              >
+            </div>
+            <div class="scribble-note note-1c">
+              <span
+                >fewer dead ends for the client, less triage time for the
+                team</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="walkthrough-case" id="document-analysis">
+        <div class="case-meta">
+          <span class="case-index">02 · Documents · AI</span>
+          <h2>Uploaded document analysis</h2>
+          <p>
+            A rental dossier review flow where AI extracts the useful signals
+            from the file stack, then suggests the next decision and client
+            follow-up instead of leaving the team to do everything manually.
+          </p>
+        </div>
+        <div class="case-canvas">
+          <div class="video-stage">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="/media/use-cases/01-real-estate-dossier.mov" />
+            </video>
+          </div>
+          <div class="annotation-layer">
+            <div class="scribble-note note-2a">
+              <span>multiple files, one readable decision view</span>
+            </div>
+            <div class="scribble-note note-2b">
+              <span
+                >financial and profile data become visible without opening every
+                page</span
+              >
+            </div>
+            <div class="scribble-note note-2c">
+              <span
+                >the next step is suggested too: accept, refuse, and even draft
+                the client message</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="walkthrough-case" id="lead-qualification">
+        <div class="case-meta">
+          <span class="case-index">03 · Data · CRM</span>
+          <h2>Lead scoring and CRM enrichment</h2>
+          <p>
+            A qualification layer that scores urgency and fit before the sales
+            team opens the CRM, with action logic already suggested.
+          </p>
+        </div>
+        <div class="case-canvas">
+          <div class="video-stage">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="/media/use-cases/02-lead-qualification.mov" />
+            </video>
+          </div>
+          <div class="annotation-layer">
+            <div class="scribble-note note-3a">
+              <span
+                >high intent is visible early instead of buried in inbound
+                noise</span
+              >
+            </div>
+            <div class="scribble-note note-3b">
+              <span
+                >the action suggestion makes the interface operational, not just
+                informative</span
+              >
+            </div>
+            <div class="scribble-note note-3c">
+              <span
+                >qualification, scoring, and routing happen before the rep
+                starts digging</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="walkthrough-case" id="recipe-ingestion">
+        <div class="case-meta">
+          <span class="case-index">04 · Content · AI</span>
+          <h2>Unstructured content into structured product data</h2>
+          <p>
+            A product ingestion flow where a simple food image turns into a
+            title, description, ingredients, tags, and a ready-to-save recipe.
+          </p>
+        </div>
+        <div class="case-canvas">
+          <div class="video-stage">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="/media/use-cases/04-recipe-ai-ingestion.mov" />
+            </video>
+          </div>
+          <div class="annotation-layer">
+            <div class="scribble-note note-4a">
+              <span>a loose visual input becomes clean reusable content</span>
+            </div>
+            <div class="scribble-note note-4b">
+              <span
+                >metadata appears with the entry, not as a second manual
+                step</span
+              >
+            </div>
+            <div class="scribble-note note-4c">
+              <span
+                >better discovery starts with structure, even when the source is
+                messy</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="walkthrough-cta">
+      <span class="walkthrough-cta-label">Next step</span>
+      <h2>Want this level of product thinking inside <em>your own AI workflow</em>?</h2>
+      <p>
+        I design AI features that fit into real products, real teams, and real
+        operational constraints.
+      </p>
+      <div class="walkthrough-cta-actions">
+        <a class="walkthrough-cta-primary" href="mailto:isaure.lohest@gmail.com">
+          Start a conversation
+        </a>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-card">
+        <div class="footer-main">
+          <div>
+            <div class="footer-name">isaure lohest.</div>
+            <a class="footer-email" href="mailto:isaure.lohest@gmail.com">
+              isaure.lohest@gmail.com
+            </a>
+          </div>
+          <div class="footer-links">
+            <a href="/#what">Services</a>
+            <a href="/#cases">Use cases</a>
+            <a href="/#process">Process</a>
+            <a href="/walkthroughs/">Walkthroughs</a>
+            <a href="mailto:isaure.lohest@gmail.com">Let's talk</a>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span class="footer-credit">
+            Design &amp; development by
+            <a href="https://isaure-lohest.com/">Isaure</a>
+          </span>
+          <span>© 2026</span>
+        </div>
+      </div>
+    </footer>
+    <div class="custom-cursor" aria-hidden="true"></div>
+    
+    <script is:inline>
+      const root = document.documentElement;
+      const paletteToggle = document.getElementById("palette-toggle");
+      const paletteStorageKey = "portfolio-palette-v2";
+
+      function setPalette(palette) {
+        const isWarm = palette === "warm";
+
+        if (isWarm) {
+          root.dataset.palette = "warm";
+        } else {
+          delete root.dataset.palette;
+        }
+
+        if (paletteToggle) {
+          paletteToggle.setAttribute("aria-pressed", String(isWarm));
+          paletteToggle.setAttribute(
+            "aria-label",
+            isWarm ? "Switch to dark palette" : "Switch to light palette",
+          );
+        }
+      }
+
+      let savedPalette = "warm";
+      try {
+        savedPalette = localStorage.getItem(paletteStorageKey) || "warm";
+      } catch (error) {
+        savedPalette = "warm";
+      }
+      setPalette(savedPalette === "warm" ? "warm" : "current");
+
+      paletteToggle?.addEventListener("click", () => {
+        const nextPalette =
+          root.dataset.palette === "warm" ? "current" : "warm";
+        setPalette(nextPalette);
+        try {
+          localStorage.setItem(paletteStorageKey, nextPalette);
+        } catch (error) {
+          // Palette preference is optional.
+        }
+      });
+
+      const desktopCanvasMatch = window.matchMedia("(min-width: 981px)");
+      const customCursor = document.querySelector(".custom-cursor");
+
+      if (customCursor && window.matchMedia("(pointer: fine)").matches) {
+        window.addEventListener("mousemove", (event) => {
+          customCursor.classList.add("is-visible");
+          customCursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+        });
+
+        window.addEventListener("mouseleave", () => {
+          customCursor.classList.remove("is-visible");
+        });
+
+        document.querySelectorAll("a, button, input").forEach((element) => {
+          if (
+            element.classList.contains("resize-handle") ||
+            element.classList.contains("playback-toggle")
+          ) {
+            return;
+          }
+
+          element.addEventListener("mouseenter", () =>
+            customCursor.classList.add("is-hovering"),
+          );
+          element.addEventListener("mouseleave", () =>
+            customCursor.classList.remove("is-hovering"),
+          );
+        });
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+      }
+
+      function positionInsideCanvas(item, canvas) {
+        const maxLeft = Math.max(0, canvas.clientWidth - item.offsetWidth);
+        const maxTop = Math.max(0, canvas.clientHeight - item.offsetHeight);
+        const currentLeft = parseFloat(item.style.left || "0");
+        const currentTop = parseFloat(item.style.top || "0");
+
+        item.style.left = `${clamp(currentLeft, 0, maxLeft)}px`;
+        item.style.top = `${clamp(currentTop, 0, maxTop)}px`;
+      }
+
+      function lockInitialPosition(item, canvas) {
+        if (item.dataset.draggableReady === "true") {
+          positionInsideCanvas(item, canvas);
+          return;
+        }
+
+        const canvasRect = canvas.getBoundingClientRect();
+        const itemRect = item.getBoundingClientRect();
+
+        item.style.position = "absolute";
+        item.style.left = `${itemRect.left - canvasRect.left}px`;
+        item.style.top = `${itemRect.top - canvasRect.top}px`;
+        item.style.right = "auto";
+        item.style.bottom = "auto";
+        item.style.margin = "0";
+
+        if (item.classList.contains("video-stage")) {
+          item.style.width = `${itemRect.width}px`;
+          item.dataset.aspectRatio = String(itemRect.width / itemRect.height);
+        } else {
+          item.style.width = `${itemRect.width}px`;
+          item.style.maxWidth = `${itemRect.width}px`;
+        }
+
+        item.dataset.draggableReady = "true";
+        positionInsideCanvas(item, canvas);
+      }
+
+      function bindDrag(item, canvas) {
+        if (item.dataset.dragBound === "true") return;
+
+        item.addEventListener("pointerdown", (event) => {
+          if (!desktopCanvasMatch.matches) return;
+          if (
+            event.target.closest(".resize-handle") ||
+            event.target.closest(".playback-toggle")
+          ) {
+            return;
+          }
+
+          const startLeft = parseFloat(item.style.left || "0");
+          const startTop = parseFloat(item.style.top || "0");
+          const startX = event.clientX;
+          const startY = event.clientY;
+
+          item.classList.add("is-dragging");
+          item.style.zIndex = item.classList.contains("video-stage") ? "6" : "7";
+          item.setPointerCapture(event.pointerId);
+
+          function onMove(moveEvent) {
+            const maxLeft = Math.max(0, canvas.clientWidth - item.offsetWidth);
+            const maxTop = Math.max(0, canvas.clientHeight - item.offsetHeight);
+            const nextLeft = clamp(
+              startLeft + (moveEvent.clientX - startX),
+              0,
+              maxLeft,
+            );
+            const nextTop = clamp(
+              startTop + (moveEvent.clientY - startY),
+              0,
+              maxTop,
+            );
+
+            item.style.left = `${nextLeft}px`;
+            item.style.top = `${nextTop}px`;
+          }
+
+          function onUp() {
+            item.classList.remove("is-dragging");
+            item.style.zIndex = item.classList.contains("video-stage") ? "2" : "3";
+            item.removeEventListener("pointermove", onMove);
+            item.removeEventListener("pointerup", onUp);
+            item.removeEventListener("pointercancel", onUp);
+          }
+
+          item.addEventListener("pointermove", onMove);
+          item.addEventListener("pointerup", onUp);
+          item.addEventListener("pointercancel", onUp);
+        });
+
+        item.dataset.dragBound = "true";
+      }
+
+      function ensureResizeHandle(videoStage) {
+        if (videoStage.querySelector(".resize-handle")) return;
+        const handle = document.createElement("button");
+        handle.type = "button";
+        handle.className = "resize-handle";
+        handle.setAttribute("aria-label", "Resize video");
+        videoStage.appendChild(handle);
+      }
+
+      function ensurePlaybackToggle(videoStage) {
+        if (videoStage.querySelector(".playback-toggle")) return;
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "playback-toggle";
+        toggle.setAttribute("aria-label", "Pause video");
+        videoStage.appendChild(toggle);
+      }
+
+      function bindPlaybackToggle(videoStage) {
+        if (videoStage.dataset.playbackBound === "true") return;
+
+        const toggle = videoStage.querySelector(".playback-toggle");
+        const video = videoStage.querySelector("video");
+        if (!toggle || !video) return;
+
+        function syncPlaybackState() {
+          const isPaused = video.paused;
+          videoStage.classList.toggle("is-paused", isPaused);
+          toggle.setAttribute("aria-label", isPaused ? "Play video" : "Pause video");
+        }
+
+        toggle.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (video.paused) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+
+          syncPlaybackState();
+        });
+
+        video.addEventListener("play", syncPlaybackState);
+        video.addEventListener("pause", syncPlaybackState);
+        syncPlaybackState();
+        videoStage.dataset.playbackBound = "true";
+      }
+
+      function bindResize(videoStage, canvas) {
+        if (videoStage.dataset.resizeBound === "true") return;
+
+        const handle = videoStage.querySelector(".resize-handle");
+        if (!handle) return;
+
+        handle.addEventListener("pointerdown", (event) => {
+          if (!desktopCanvasMatch.matches) return;
+          event.preventDefault();
+          event.stopPropagation();
+
+          const ratio =
+            parseFloat(videoStage.dataset.aspectRatio || "1") ||
+            videoStage.offsetWidth / videoStage.offsetHeight;
+          const startWidth = videoStage.offsetWidth;
+          const startLeft = parseFloat(videoStage.style.left || "0");
+          const startTop = parseFloat(videoStage.style.top || "0");
+          const startX = event.clientX;
+          const startY = event.clientY;
+          const minWidth = 520;
+
+          videoStage.classList.add("is-resizing");
+          videoStage.style.zIndex = "6";
+          handle.setPointerCapture(event.pointerId);
+
+          function onMove(moveEvent) {
+            const deltaX = moveEvent.clientX - startX;
+            const deltaY = moveEvent.clientY - startY;
+            const rawWidth = startWidth + Math.max(deltaX, deltaY);
+            const maxWidthByCanvas = canvas.clientWidth - startLeft;
+            const maxHeightByCanvas = canvas.clientHeight - startTop;
+            const maxWidthByHeight = maxHeightByCanvas * ratio;
+            const nextWidth = clamp(
+              rawWidth,
+              minWidth,
+              Math.max(minWidth, Math.min(maxWidthByCanvas, maxWidthByHeight)),
+            );
+
+            videoStage.style.width = `${nextWidth}px`;
+            positionInsideCanvas(videoStage, canvas);
+          }
+
+          function onUp() {
+            videoStage.classList.remove("is-resizing");
+            videoStage.style.zIndex = "2";
+            handle.removeEventListener("pointermove", onMove);
+            handle.removeEventListener("pointerup", onUp);
+            handle.removeEventListener("pointercancel", onUp);
+          }
+
+          handle.addEventListener("pointermove", onMove);
+          handle.addEventListener("pointerup", onUp);
+          handle.addEventListener("pointercancel", onUp);
+        });
+
+        videoStage.dataset.resizeBound = "true";
+      }
+
+      function initCanvasDraggables() {
+        if (!desktopCanvasMatch.matches) return;
+
+        document.querySelectorAll(".case-canvas").forEach((canvas) => {
+          const videoStage = canvas.querySelector(".video-stage");
+          if (videoStage) {
+            ensureResizeHandle(videoStage);
+            ensurePlaybackToggle(videoStage);
+            lockInitialPosition(videoStage, canvas);
+            bindDrag(videoStage, canvas);
+            bindResize(videoStage, canvas);
+            bindPlaybackToggle(videoStage);
+          }
+
+          canvas.querySelectorAll(".scribble-note").forEach((item) => {
+            lockInitialPosition(item, canvas);
+            bindDrag(item, canvas);
+          });
+        });
+      }
+
+      window.addEventListener("load", initCanvasDraggables);
+      window.addEventListener("resize", () => {
+        if (!desktopCanvasMatch.matches) return;
+        document.querySelectorAll(".case-canvas").forEach((canvas) => {
+          canvas
+            .querySelectorAll(".video-stage, .scribble-note")
+            .forEach((item) => positionInsideCanvas(item, canvas));
+        });
+      });
+    </script>
+</BaseLayout>

@@ -1,0 +1,90 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  defaultPalette?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  defaultPalette,
+  ogImage = '/favicon.png',
+  ogImageAlt = 'Isaure Lohest AI portfolio',
+  structuredData,
+} = Astro.props;
+
+const siteUrl = 'https://ai.isaure-lohest.com';
+const canonical = canonicalUrl ?? Astro.url.href;
+const absoluteOgImage = new URL(ogImage, siteUrl).toString();
+const themeColor = defaultPalette === 'warm' ? '#faf9f5' : '#141210';
+---
+<!doctype html>
+<html lang="en" data-palette={defaultPalette}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="author" content="Isaure Lohest" />
+    <meta name="creator" content="Isaure Lohest" />
+    <meta name="publisher" content="Isaure Lohest" />
+    <meta name="theme-color" content={themeColor} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Isaure Lohest — AI Integration Engineer" />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:image:width" content="1556" />
+    <meta property="og:image:height" content="1556" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOgImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    {structuredData && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+      />
+    )}
+
+    <!-- Page-specific head content (e.g. GSAP scripts) -->
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
