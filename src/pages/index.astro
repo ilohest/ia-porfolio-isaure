@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/index.css';
 
 const structuredData = [
@@ -146,13 +147,9 @@ const structuredData = [
           aria-label="AI Solution Explorer"
         >
           <div class="explorer">
-            <div class="explorer-header">
-              <span class="explorer-header-text"
-                >Every product has workflows that can be improved with AI.</span
-              >
-              <span class="explorer-header-sep">→</span>
-              <span class="explorer-header-cta"> Describe yours</span>
-            </div>
+            <h2 class="explorer-title">
+              Every product has workflows that can be improved with AI.
+            </h2>
 
             <div class="chips" aria-label="Example questions">
               <button
@@ -191,23 +188,6 @@ const structuredData = [
                 Prioritize leads before sales opens the CRM
               </button>
             </div>
-
-            <form class="explorer-form" id="explorer-form">
-              <input
-                type="text"
-                id="explorer-input"
-                class="explorer-input"
-                placeholder="Ask what AI should do inside your product..."
-                autocomplete="off"
-              />
-              <button
-                type="submit"
-                class="explorer-submit"
-                aria-label="Explore this AI solution"
-              >
-                →
-              </button>
-            </form>
 
             <div
               id="explorer-response"
@@ -559,7 +539,7 @@ const structuredData = [
             <h3 class="cases-footer-title">See the interfaces in full scale</h3>
           </div>
           <a
-            href="/walkthroughs"
+            href="/walkthroughs/"
             class="cases-footer-link"
           >
             Open AI product walkthroughs
@@ -743,12 +723,164 @@ const structuredData = [
       </div>
     </section>
 
+    <!-- ── FAQ ───────────────────────────────────────────────────── -->
+    <section id="faq">
+      <div class="container faq-container">
+        <div class="faq-header">
+          <div class="faq-coin" aria-hidden="true">
+            <div class="faq-coin-face">
+              <span class="faq-coin-mark">?</span>
+            </div>
+          </div>
+          <h2 class="faq-title">FAQ</h2>
+        </div>
+
+        <div class="faq-list" role="list">
+          <article class="faq-item" role="listitem">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-1"
+              id="faq-trigger-1"
+            >
+              <span>Is this relevant for my business?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-1"
+              role="region"
+              aria-labelledby="faq-trigger-1"
+              hidden
+            >
+              <p>
+                If your team handles data, content, or repetitive workflows,
+                there&apos;s likely an opportunity. AI is not limited to tech
+                companies — it applies anywhere decisions, analysis, or routing
+                happen.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item" role="listitem">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-2"
+              id="faq-trigger-2"
+            >
+              <span>What does an AI integration actually look like?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-2"
+              role="region"
+              aria-labelledby="faq-trigger-2"
+              hidden
+            >
+              <p>
+                It&apos;s not a separate tool. AI runs inside your existing
+                product or workflow, handling specific tasks like analyzing
+                inputs, structuring data, prioritizing actions, or assisting
+                decisions.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item" role="listitem">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-3"
+              id="faq-trigger-3"
+            >
+              <span>Do I need to rebuild my product to integrate AI?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-3"
+              role="region"
+              aria-labelledby="faq-trigger-3"
+              hidden
+            >
+              <p>
+                No. Most systems are designed to plug into what you already use,
+                through APIs and existing tools. The goal is to enhance, not
+                replace.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item" role="listitem">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-4"
+              id="faq-trigger-4"
+            >
+              <span>What kind of results should I expect?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-4"
+              role="region"
+              aria-labelledby="faq-trigger-4"
+              hidden
+            >
+              <p>
+                Less manual work, faster decisions, better consistency, and
+                more leverage from your existing product and data.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item" role="listitem">
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="faq-panel-5"
+              id="faq-trigger-5"
+            >
+              <span>Is this visible to my users, or internal?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-5"
+              role="region"
+              aria-labelledby="faq-trigger-5"
+              hidden
+            >
+              <p>
+                Both are possible. Some systems enhance the user experience
+                directly, others operate in the background to improve internal
+                workflows and decision-making.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ── CTA ───────────────────────────────────────────────────── -->
     <section id="contact">
       <div class="container">
         <span class="cta-label">Start before the gap widens</span>
         <h2 class="cta-title">
-          Turn one workflow into a <em>real AI system</em>
+          Turn one workflow into a
+          <em class="cta-highlight-sequence" aria-label="real AI system">
+            <span class="cta-highlight-word">real</span>
+            <span class="cta-highlight-word">AI</span>
+            <span class="cta-highlight-word">system</span>
+          </em>
         </h2>
         <p class="cta-sub">
           Most teams are already integrating AI into their workflows. See where
@@ -765,31 +897,7 @@ const structuredData = [
     </section>
 
     <!-- ── FOOTER ────────────────────────────────────────────────── -->
-    <footer>
-      <div class="footer-card">
-        <div class="footer-main">
-          <div>
-            <div class="footer-name">isaure lohest.</div>
-            <a class="footer-email" href="mailto:isaure.lohest@gmail.com">
-              isaure.lohest@gmail.com
-            </a>
-          </div>
-          <div class="footer-links">
-            <a href="#what">Services</a>
-            <a href="#cases">Use cases</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Let's talk</a>
-          </div>
-        </div>
-        <div class="footer-meta">
-          <span class="footer-credit">
-            Design &amp; development by
-            <a href="https://isaure-lohest.com/">Isaure</a>
-          </span>
-          <span>© 2026</span>
-        </div>
-      </div>
-    </footer>
+    <SiteFooter />
     <div class="custom-cursor" aria-hidden="true"></div>
 
     <!-- ─────────────────────────────────────────────────────────── -->
@@ -942,6 +1050,7 @@ const structuredData = [
 
         // ── IMMERSIVE STARFIELD ENGINE ─────────────────────────────
 
+        const heroWrapper = document.getElementById("hero-wrapper");
         const canvas = document.getElementById("starfield");
         const ctx = canvas.getContext("2d");
         const stickersContainer = document.getElementById("stickers");
@@ -962,6 +1071,10 @@ const structuredData = [
         let stickerEls = [];
         let rafId = null;
         let frameTime = 0;
+        let heroAutoScrollActive = false;
+        let heroAutoScrollDone = false;
+        let heroAutoScrollRaf = null;
+        let touchStartY = 0;
 
         // ── CONSTANTS ──────────────────────────────────────────────
         const FOV = 280; // perspective strength — lower = more dramatic
@@ -971,6 +1084,9 @@ const structuredData = [
         const CAMERA_RANGE = 1400; // camera travel distance over full scroll
         const PARALLAX_STR = 28; // mouse parallax max offset (px)
         const STICKER_DRIFT_SPEED = 0.42; // z-units per frame, keeps examples alive while static
+        const HERO_PRELUDE_PROGRESS = 0.14;
+        const HERO_CARD_PROGRESS = 0.58;
+        const HERO_AUTOSCROLL_DURATION = 720;
 
         // ── STICKER 3D LAYOUT ──────────────────────────────────────
         // Kept wide (|x|,|y| > 200) so they orbit around center content
@@ -1024,6 +1140,69 @@ const structuredData = [
           particles = Array.from({ length: NUM_PART }, () =>
             makeParticle(true),
           );
+        }
+
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+
+        function getHeroScrollProgress() {
+          const heroStart = heroWrapper.offsetTop;
+          const heroDistance = heroWrapper.offsetHeight;
+          return Math.min(
+            1,
+            Math.max(0, (window.scrollY - heroStart) / heroDistance),
+          );
+        }
+
+        function getHeroCardScrollTarget() {
+          const heroStart = heroWrapper.offsetTop;
+          const heroDistance = heroWrapper.offsetHeight;
+          return heroStart + heroDistance * HERO_CARD_PROGRESS;
+        }
+
+        function animateHeroScrollTo(targetY) {
+          if (heroAutoScrollRaf) cancelAnimationFrame(heroAutoScrollRaf);
+
+          const startY = window.scrollY;
+          const distance = targetY - startY;
+          if (Math.abs(distance) < 6) {
+            heroAutoScrollActive = false;
+            heroAutoScrollDone = true;
+            heroAutoScrollRaf = null;
+            return;
+          }
+
+          const startTime = performance.now();
+          heroAutoScrollActive = true;
+
+          const step = (now) => {
+            const elapsed = now - startTime;
+            const t = Math.min(1, elapsed / HERO_AUTOSCROLL_DURATION);
+            window.scrollTo(0, startY + distance * easeOutCubic(t));
+
+            if (t < 1) {
+              heroAutoScrollRaf = requestAnimationFrame(step);
+              return;
+            }
+
+            heroAutoScrollActive = false;
+            heroAutoScrollDone = true;
+            heroAutoScrollRaf = null;
+          };
+
+          heroAutoScrollRaf = requestAnimationFrame(step);
+        }
+
+        function maybeAdvanceHero() {
+          if (heroAutoScrollActive || heroAutoScrollDone) return;
+          const progress = getHeroScrollProgress();
+          if (
+            progress < HERO_PRELUDE_PROGRESS ||
+            progress >= HERO_CARD_PROGRESS - 0.04
+          )
+            return;
+          animateHeroScrollTo(getHeroCardScrollTarget());
         }
 
         // ── PROJECTION ────────────────────────────────────────────
@@ -1183,14 +1362,25 @@ const structuredData = [
         // ── HERO CONTENT FADE ON SCROLL ──────────────────────────
         function updateHeroFade() {
           const p = Math.min(1, Math.max(0, cameraZ / CAMERA_RANGE)); // 0..1
+          const transitionProgress = Math.min(
+            1,
+            Math.max(
+              0,
+              (p - HERO_PRELUDE_PROGRESS) /
+                (HERO_CARD_PROGRESS - HERO_PRELUDE_PROGRESS),
+            ),
+          );
           // The central hero sentence must fully disappear before the explorer can receive focus.
-          const titleAlpha = Math.max(0, 1 - p * 3.2);
-          const titleScale = 1 - p * 0.12;
+          const titleAlpha = Math.max(0, 1 - transitionProgress * 3.2);
+          const titleScale = 1 - transitionProgress * 0.12;
           heroPhase1.style.opacity = titleAlpha.toFixed(3);
           heroPhase1.style.transform = `scale(${Math.max(0.88, titleScale).toFixed(3)})`;
 
-          const explorerAlpha = Math.max(0, Math.min(1, (p - 0.36) / 0.16));
-          if (p < 0.34) {
+          const explorerAlpha = Math.max(
+            0,
+            Math.min(1, (transitionProgress - 0.36) / 0.16),
+          );
+          if (transitionProgress < 0.34) {
             explorerLayer.style.opacity = "0";
             explorerLayer.style.transform = "translateY(22px) scale(0.98)";
             explorerLayer.classList.remove("is-active");
@@ -1215,6 +1405,51 @@ const structuredData = [
           mouseX = (e.clientX / W - 0.5) * 2;
           mouseY = (e.clientY / H - 0.5) * 2;
         });
+
+        window.addEventListener(
+          "wheel",
+          (e) => {
+            const progress = getHeroScrollProgress();
+            if (
+              e.deltaY > 0 &&
+              (heroAutoScrollActive ||
+                (!heroAutoScrollDone &&
+                  progress >= HERO_PRELUDE_PROGRESS &&
+                  progress < HERO_CARD_PROGRESS - 0.04))
+            ) {
+              e.preventDefault();
+              maybeAdvanceHero();
+            }
+          },
+          { passive: false },
+        );
+
+        window.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartY = e.touches[0]?.clientY ?? 0;
+          },
+          { passive: true },
+        );
+
+        window.addEventListener(
+          "touchmove",
+          (e) => {
+            const currentY = e.touches[0]?.clientY ?? touchStartY;
+            const progress = getHeroScrollProgress();
+            if (
+              touchStartY - currentY > 10 &&
+              (heroAutoScrollActive ||
+                (!heroAutoScrollDone &&
+                  progress >= HERO_PRELUDE_PROGRESS &&
+                  progress < HERO_CARD_PROGRESS - 0.04))
+            ) {
+              e.preventDefault();
+              maybeAdvanceHero();
+            }
+          },
+          { passive: false },
+        );
 
         // ── MAIN LOOP ─────────────────────────────────────────────
         function tick() {
@@ -1241,6 +1476,9 @@ const structuredData = [
           end: "bottom top",
           onUpdate(self) {
             cameraZ = self.progress * CAMERA_RANGE;
+            if (self.progress < 0.04) {
+              heroAutoScrollDone = false;
+            }
           },
         });
 
@@ -1556,20 +1794,10 @@ const structuredData = [
             .replace(/'/g, "&#039;");
         }
 
-        function renderLoading() {
-          return `<div class="explorer-loading">
-        <div class="loading-dots"><span></span><span></span><span></span></div>
-        <span>Designing the system…</span>
-      </div>`;
-        }
-
         function renderResponse(r) {
           const data = normalizeExplorerResponse(r);
           const flowItems = data.workflow
             .map((w) => `<li>${escapeHtml(w)}</li>`)
-            .join("");
-          const toolTags = data.integrations
-            .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
             .join("");
           const impactItems = data.impact
             .map((o) => `<li>${escapeHtml(o)}</li>`)
@@ -1585,98 +1813,15 @@ const structuredData = [
             <div class="response-block-label">Typical workflow</div>
             <ul>${flowItems}</ul>
           </div>
-          <div class="response-block">
-            <div class="response-block-label">Integrations</div>
-            <div class="tags-row">${toolTags}</div>
-          </div>
-          <div class="response-block">
+          <div class="response-block response-block-impact">
             <div class="response-block-label">Business impact</div>
             <ul>${impactItems}</ul>
           </div>
         </div>
-        <button class="try-another" type="button" id="try-another">Try another use case</button>
       `;
         }
 
-        const explorerForm = document.getElementById("explorer-form");
-        const explorerInput = document.getElementById("explorer-input");
         const explorerResponse = document.getElementById("explorer-response");
-        const placeholders = [
-          "Ask what AI should do inside your product...",
-          "Summarize uploaded documents in my admin",
-          "Notify my team on Telegram when it matters",
-          "Classify and prioritize incoming leads",
-        ];
-        let placeholderIndex = 0;
-        let placeholderText = "";
-        let placeholderCharIndex = 0;
-        let isDeletingPlaceholder = false;
-        let placeholderTimeout = null;
-
-        function shouldPausePlaceholder() {
-          return (
-            document.activeElement === explorerInput ||
-            explorerInput.value.trim()
-          );
-        }
-
-        function typePlaceholder() {
-          window.clearTimeout(placeholderTimeout);
-
-          if (shouldPausePlaceholder()) {
-            placeholderTimeout = window.setTimeout(typePlaceholder, 300);
-            return;
-          }
-
-          const current = placeholders[placeholderIndex];
-          if (isDeletingPlaceholder) {
-            placeholderCharIndex = Math.max(0, placeholderCharIndex - 1);
-          } else {
-            placeholderCharIndex = Math.min(
-              current.length,
-              placeholderCharIndex + 1,
-            );
-          }
-
-          placeholderText = current.slice(0, placeholderCharIndex);
-          explorerInput.placeholder =
-            placeholderText +
-            (placeholderCharIndex < current.length ? "|" : "");
-
-          let delay = isDeletingPlaceholder ? 34 : 58;
-
-          if (
-            !isDeletingPlaceholder &&
-            placeholderCharIndex === current.length
-          ) {
-            delay = 1400;
-            isDeletingPlaceholder = true;
-          } else if (isDeletingPlaceholder && placeholderCharIndex === 0) {
-            placeholderIndex = (placeholderIndex + 1) % placeholders.length;
-            isDeletingPlaceholder = false;
-            delay = 260;
-          } else if (isDeletingPlaceholder) {
-            delay = 22 + Math.random() * 34;
-          } else {
-            const lastChar = current[placeholderCharIndex - 1] || "";
-            const nextChar = current[placeholderCharIndex] || "";
-            delay = 42 + Math.random() * 72;
-
-            if (lastChar === " ") delay += 70 + Math.random() * 70;
-            if (/[,.:;!?]/.test(lastChar)) delay += 160 + Math.random() * 120;
-            if (nextChar === " ") delay += Math.random() * 45;
-            if (Math.random() < 0.08) delay += 90 + Math.random() * 180;
-          }
-
-          placeholderTimeout = window.setTimeout(typePlaceholder, delay);
-        }
-
-        if (prefersReducedMotion) {
-          explorerInput.placeholder = placeholders[0];
-        } else {
-          explorerInput.placeholder = "";
-          typePlaceholder();
-        }
 
         async function fetchExplorerResponse(query) {
           // Static Astro build: keep the explorer fully client-side.
@@ -1686,32 +1831,13 @@ const structuredData = [
         async function handleQuery(query) {
           if (!query.trim()) return;
           explorerResponse.classList.remove("hidden");
-          explorerResponse.innerHTML = renderLoading();
-
-          const [resp] = await Promise.all([
-            fetchExplorerResponse(query),
-            new Promise((resolve) => setTimeout(resolve, 450)),
-          ]);
+          const resp = await fetchExplorerResponse(query);
           explorerResponse.innerHTML = renderResponse(resp);
-          document
-            .getElementById("try-another")
-            ?.addEventListener("click", () => {
-              explorerInput.value = "";
-              explorerInput.focus();
-              explorerResponse.classList.add("hidden");
-              explorerResponse.innerHTML = "";
-            });
         }
-
-        explorerForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          handleQuery(explorerInput.value);
-        });
 
         // Chips
         document.querySelectorAll(".chip").forEach((chip) => {
           chip.addEventListener("click", () => {
-            explorerInput.value = chip.dataset.q;
             handleQuery(chip.dataset.q);
           });
         });
@@ -1755,15 +1881,19 @@ const structuredData = [
         const CASE_VIDEOS = {
           "Uploaded document analysis": {
             src: "./media/use-cases/01-real-estate-dossier.mov",
+            walkthrough: "/walkthroughs/#document-analysis",
           },
           "Lead scoring and CRM enrichment": {
             src: "./media/use-cases/02-lead-qualification.mov",
+            walkthrough: "/walkthroughs/#lead-qualification",
           },
           "Smart request routing and triage": {
             src: "./media/use-cases/03-legal-case-routing.mov",
+            walkthrough: "/walkthroughs/#legal-routing",
           },
           "Unstructured content into structured product data": {
             src: "./media/use-cases/04-recipe-ai-ingestion.mov",
+            walkthrough: "/walkthroughs/#recipe-ingestion",
           },
         };
 
@@ -1814,6 +1944,49 @@ const structuredData = [
           `;
         }
 
+        function renderCaseWalkthroughLink(detail) {
+          if (!detail.video?.walkthrough) return "";
+
+          return `
+            <a
+              href="${escapeHtml(detail.video.walkthrough)}"
+              class="case-detail-eye"
+              aria-label="Open walkthrough for ${escapeHtml(detail.title)}"
+              title="Open walkthrough"
+              data-cursor-contrast="difference"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M1.5 12s3.8-6 10.5-6 10.5 6 10.5 6-3.8 6-10.5 6S1.5 12 1.5 12Z" />
+                <circle cx="12" cy="12" r="3.2" />
+              </svg>
+            </a>
+          `;
+        }
+
+        function ensureInlineCaseMedia(card, detail) {
+          if (!card || !detail.video?.src) return;
+          const caseRow = card.querySelector(".case-row");
+          if (!caseRow || caseRow.querySelector(".case-row-media")) return;
+
+          const media = document.createElement("div");
+          media.className = "case-row-media";
+          media.innerHTML = `
+            <div class="case-detail-video-frame">
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                aria-label="${escapeHtml(detail.title)} demo video"
+              >
+                <source src="${escapeHtml(detail.video.src)}" />
+              </video>
+            </div>
+          `;
+          caseRow.appendChild(media);
+        }
+
         function renderCaseDetail(card) {
           if (!caseDetail || !card) return;
 
@@ -1824,11 +1997,15 @@ const structuredData = [
           });
 
           const detail = extractCaseData(card);
+          ensureInlineCaseMedia(card, detail);
 
           caseDetail.classList.remove("is-visible");
           caseDetail.innerHTML = `
             <div class="case-detail-head">
-              <span class="case-detail-tag">${escapeHtml(detail.category)}</span>
+              <div class="case-detail-head-top">
+                <span class="case-detail-tag">${escapeHtml(detail.category)}</span>
+                ${renderCaseWalkthroughLink(detail)}
+              </div>
               <h3 class="case-detail-title">${escapeHtml(detail.title)}</h3>
             </div>
             <div class="case-detail-grid">
@@ -1851,6 +2028,8 @@ const structuredData = [
             caseDetail.classList.add("is-visible");
             const video = caseDetail.querySelector("video");
             video?.play?.().catch(() => {});
+            const inlineVideo = card.querySelector(".case-row-media video");
+            inlineVideo?.play?.().catch(() => {});
           });
         }
 
@@ -1868,7 +2047,38 @@ const structuredData = [
         renderCaseDetail(caseCards[0]);
 
         // Process steps
-        gsap.utils.toArray(".step").forEach((el, i) => {
+        const processSteps = gsap.utils.toArray(".step");
+
+        function updateProcessFocus() {
+          if (!processSteps.length) return;
+
+          const revealedSteps = processSteps.filter((el) =>
+            el.classList.contains("is-revealed"),
+          );
+          if (!revealedSteps.length) return;
+
+          let currentIndex = 0;
+          let bestDistance = Number.POSITIVE_INFINITY;
+          const viewportCenter = window.innerHeight * 0.5;
+
+          revealedSteps.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            const stepCenter = rect.top + rect.height * 0.5;
+            const distance = Math.abs(stepCenter - viewportCenter);
+            if (distance < bestDistance) {
+              bestDistance = distance;
+              currentIndex = processSteps.indexOf(el);
+            }
+          });
+
+          processSteps.forEach((el, i) => {
+            el.classList.toggle("is-current", i === currentIndex);
+            el.classList.toggle("is-near", Math.abs(i - currentIndex) === 1);
+            el.classList.toggle("is-dim", Math.abs(i - currentIndex) > 1);
+          });
+        }
+
+        processSteps.forEach((el, i) => {
           const icon = el.querySelector(".step-bg-icon");
           const paths = el.querySelectorAll(".step-bg-icon path");
           const reduceMotion = window.matchMedia(
@@ -1889,6 +2099,10 @@ const structuredData = [
             duration: 0.6,
             ease: "power3.out",
             delay: (i % 3) * 0.1,
+            onComplete: () => {
+              el.classList.add("is-revealed");
+              updateProcessFocus();
+            },
           });
 
           if (reduceMotion || !icon || !paths.length) return;
@@ -2032,6 +2246,43 @@ const structuredData = [
           });
         });
 
+        ScrollTrigger.create({
+          trigger: "#process",
+          start: "top bottom",
+          end: "bottom top",
+          onUpdate: updateProcessFocus,
+          onEnter: updateProcessFocus,
+          onEnterBack: updateProcessFocus,
+        });
+
+        // FAQ accordion
+        const faqItems = gsap.utils.toArray(".faq-item");
+        faqItems.forEach((item) => {
+          const trigger = item.querySelector(".faq-trigger");
+          const panel = item.querySelector(".faq-panel");
+          if (!trigger || !panel) return;
+
+          trigger.addEventListener("click", () => {
+            const willOpen = trigger.getAttribute("aria-expanded") !== "true";
+
+            faqItems.forEach((other) => {
+              const otherTrigger = other.querySelector(".faq-trigger");
+              const otherPanel = other.querySelector(".faq-panel");
+              if (!otherTrigger || !otherPanel) return;
+
+              other.classList.remove("is-open");
+              otherTrigger.setAttribute("aria-expanded", "false");
+              otherPanel.hidden = true;
+            });
+
+            if (!willOpen) return;
+
+            item.classList.add("is-open");
+            trigger.setAttribute("aria-expanded", "true");
+            panel.hidden = false;
+          });
+        });
+
         // Section headers
         gsap.utils.toArray(".section-header").forEach((el) => {
           gsap.from(el, {
@@ -2058,6 +2309,21 @@ const structuredData = [
             start: "top 75%",
             toggleActions: "play none none none",
           },
+        });
+
+        gsap.utils.toArray(".faq-item").forEach((el, i) => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            ease: "power3.out",
+            delay: i * 0.06,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          });
         });
 
         // Hero content entrance

@@ -23,9 +23,15 @@ ssh "${VPS_HOST}" "mkdir -p '${REMOTE_BASE_DIR}/releases' '${REMOTE_BASE_DIR}/sh
 
 echo "Uploading release ${TIMESTAMP}"
 rsync -avz --delete \
-  --chown=www-data:www-data \
-  --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r \
   "${SOURCE_DIR}" "${VPS_HOST}:${RELEASE_DIR}/"
+
+echo "Normalizing permissions on remote release"
+ssh "${VPS_HOST}" "
+  set -e
+  chown -R www-data:www-data '${RELEASE_DIR}'
+  find '${RELEASE_DIR}' -type d -exec chmod 755 {} +
+  find '${RELEASE_DIR}' -type f -exec chmod 644 {} +
+"
 
 echo "Validating uploaded release"
 ssh "${VPS_HOST}" "test -f '${RELEASE_DIR}/index.html'"

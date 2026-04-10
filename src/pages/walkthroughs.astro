@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/walkthroughs.css';
 
 const structuredData = [
@@ -64,7 +65,31 @@ const structuredData = [
         <a href="/walkthroughs/" class="is-active">Walkthroughs</a>
         <a href="mailto:isaure.lohest@gmail.com" class="nav-cta">Let's talk</a>
       </div>
+      <div class="nav-mobile">
+        <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg class="hamburger-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <line class="bar bar-top" x1="3" y1="7" x2="21" y2="7"/>
+            <line class="bar bar-mid" x1="3" y1="12" x2="21" y2="12"/>
+            <line class="bar bar-bot" x1="3" y1="17" x2="21" y2="17"/>
+          </svg>
+        </button>
+        <a href="mailto:isaure.lohest@gmail.com" class="nav-cta nav-cta-mobile">Let's talk</a>
+      </div>
     </nav>
+    <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu" aria-hidden="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Navigation">
+      <nav class="nav-drawer-links">
+        <a href="/#what">Services</a>
+        <a href="/#cases">Use cases</a>
+        <a href="/#process">Process</a>
+        <a href="/walkthroughs/">Walkthroughs</a>
+      </nav>
+      <a href="mailto:isaure.lohest@gmail.com" class="nav-drawer-cta">Let's talk →</a>
+    </div>
     <button
       type="button"
       class="palette-toggle"
@@ -93,7 +118,7 @@ const structuredData = [
         <defs>
           <path
             id="corner-wordmark-path"
-            d="M 58 560 L 58 480 C 58 400 58 300 58 220 C 58 220 58 220 58 220 L 58 220"
+            d="M 58 214 L 58 158 C 58 94 108 48 190 48 C 238 48 292 48 344 48 L 532 48"
           />
         </defs>
         <text>
@@ -270,35 +295,53 @@ const structuredData = [
           Start a conversation
         </a>
       </div>
+      <a class="walkthrough-cta-email" href="mailto:isaure.lohest@gmail.com">
+        isaure.lohest@gmail.com
+      </a>
     </section>
-    <footer>
-      <div class="footer-card">
-        <div class="footer-main">
-          <div>
-            <div class="footer-name">isaure lohest.</div>
-            <a class="footer-email" href="mailto:isaure.lohest@gmail.com">
-              isaure.lohest@gmail.com
-            </a>
-          </div>
-          <div class="footer-links">
-            <a href="/#what">Services</a>
-            <a href="/#cases">Use cases</a>
-            <a href="/#process">Process</a>
-            <a href="/walkthroughs/">Walkthroughs</a>
-            <a href="mailto:isaure.lohest@gmail.com">Let's talk</a>
-          </div>
-        </div>
-        <div class="footer-meta">
-          <span class="footer-credit">
-            Design &amp; development by
-            <a href="https://isaure-lohest.com/">Isaure</a>
-          </span>
-          <span>© 2026</span>
-        </div>
-      </div>
-    </footer>
+    <SiteFooter />
     <div class="custom-cursor" aria-hidden="true"></div>
     
+    <script is:inline>
+      (() => {
+        const menuBtn = document.getElementById('nav-menu-btn');
+        const drawer = document.getElementById('nav-drawer');
+        const closeBtn = document.getElementById('nav-drawer-close');
+
+        function openDrawer() {
+          drawer?.classList.add('is-open');
+          drawer?.setAttribute('aria-hidden', 'false');
+          closeBtn?.classList.add('is-visible');
+          closeBtn?.setAttribute('aria-hidden', 'false');
+          menuBtn?.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+          drawer?.classList.remove('is-open');
+          drawer?.setAttribute('aria-hidden', 'true');
+          closeBtn?.classList.remove('is-visible');
+          closeBtn?.setAttribute('aria-hidden', 'true');
+          menuBtn?.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+
+        menuBtn?.addEventListener('click', openDrawer);
+        closeBtn?.addEventListener('click', closeDrawer);
+
+        drawer?.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', closeDrawer);
+        });
+
+        drawer?.addEventListener('click', (event) => {
+          if (event.target === drawer) closeDrawer();
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && drawer?.classList.contains('is-open')) closeDrawer();
+        });
+      })();
+    </script>
     <script is:inline>
       const root = document.documentElement;
       const paletteToggle = document.getElementById("palette-toggle");
