@@ -1,0 +1,332 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { breadcrumbSchema, personSchema, professionalServiceSchema, websiteSchema } from '../data/seo';
+import '../styles/index.css';
+import '../styles/contact.css';
+import '../styles/shared-footer.css';
+
+const firebaseConfig = {
+  apiKey: import.meta.env.NUXT_PUBLIC_FIREBASE_API_KEY ?? '',
+  authDomain: import.meta.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN ?? '',
+  projectId: import.meta.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID ?? '',
+  storageBucket: import.meta.env.NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET ?? '',
+  messagingSenderId: import.meta.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ?? '',
+  appId: import.meta.env.NUXT_PUBLIC_FIREBASE_APP_ID ?? '',
+};
+
+const structuredData = [
+  personSchema,
+  websiteSchema,
+  professionalServiceSchema,
+  breadcrumbSchema([
+    { name: 'Home', url: 'https://ai.isaure-lohest.com/' },
+    { name: 'Contact', url: 'https://ai.isaure-lohest.com/contact/' },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': 'https://ai.isaure-lohest.com/contact/#contact',
+    name: 'Contact Isaure Lohest',
+    url: 'https://ai.isaure-lohest.com/contact/',
+    description:
+      'Contact Isaure Lohest about AI integrations for SaaS workflows, messaging systems, CRM enrichment, and operational automation.',
+    about: {
+      '@id': 'https://ai.isaure-lohest.com/#ai-integration-service',
+    },
+    mainEntity: {
+      '@id': 'https://ai.isaure-lohest.com/#isaure-lohest',
+    },
+  },
+];
+---
+<BaseLayout
+  title="Contact | Isaure Lohest — AI Integration Engineer"
+  description="Tell me what you want to build and I’ll reply with the smartest next step for your product and workflows."
+  canonicalUrl="https://ai.isaure-lohest.com/contact/"
+  defaultPalette="warm"
+  structuredData={structuredData}
+>
+  <div class="contact-body">
+    <nav id="nav">
+      <a href="/" class="nav-logo">Isaure Lohest</a>
+      <div class="nav-links">
+        <a href="/#what">Services</a>
+        <a href="/#cases">Use cases</a>
+        <a href="/#process">Process</a>
+        <a href="/walkthroughs/">Walkthroughs</a>
+        <a href="/contact/" class="nav-cta is-active">Let's talk</a>
+      </div>
+      <div class="nav-mobile">
+        <a href="/" class="nav-mobile-wordmark">isaure lohest<span>.</span></a>
+        <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg class="hamburger-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <line class="bar bar-top" x1="3" y1="7" x2="21" y2="7" />
+            <line class="bar bar-mid" x1="3" y1="12" x2="21" y2="12" />
+            <line class="bar bar-bot" x1="3" y1="17" x2="21" y2="17" />
+          </svg>
+        </button>
+        <a href="/contact/" class="nav-cta nav-cta-mobile">Let's talk</a>
+      </div>
+    </nav>
+    <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu" aria-hidden="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Navigation">
+      <nav class="nav-drawer-links">
+        <a href="/#what">Services</a>
+        <a href="/#cases">Use cases</a>
+        <a href="/#process">Process</a>
+        <a href="/walkthroughs/">Walkthroughs</a>
+      </nav>
+      <a href="/contact/" class="nav-drawer-cta">Let's talk →</a>
+    </div>
+    <button
+      type="button"
+      class="palette-toggle"
+      id="palette-toggle"
+      aria-label="Switch to dark palette"
+      aria-pressed="true"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v2.2" />
+        <path d="M12 18.8V21" />
+        <path d="M3 12h2.2" />
+        <path d="M18.8 12H21" />
+        <path d="M5.64 5.64 7.2 7.2" />
+        <path d="M16.8 16.8l1.56 1.56" />
+        <path d="M18.36 5.64 16.8 7.2" />
+        <path d="M7.2 16.8l-1.56 1.56" />
+        <path d="M12 8.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6z" />
+      </svg>
+    </button>
+    <a href="/" class="corner-wordmark" aria-label="Back to portfolio">
+      <svg viewBox="0 0 560 230" role="img">
+        <defs>
+          <path
+            id="corner-wordmark-path"
+            d="M 58 214 L 58 158 C 58 94 108 48 190 48 C 238 48 292 48 344 48 L 532 48"
+          />
+        </defs>
+        <text>
+          <textPath href="#corner-wordmark-path" startOffset="0%">
+            isaure lohest.
+          </textPath>
+        </text>
+      </svg>
+    </a>
+
+    <main class="contact-shell">
+
+      <section class="contact-hero">
+        <div class="contact-panel">
+          <h1 class="contact-title">
+            Turn your workflow
+            into something
+            <em>smarter</em><span class="contact-title-period">.</span>
+          </h1>
+          <p class="contact-copy">
+            If you already have a use case in mind, send it over. I can help you shape the first
+            version, identify the right integration point, and keep the implementation grounded in
+            how your product actually runs.
+          </p>
+          <div class="contact-direct">
+            <p>
+              Prefer email?
+              <a href="mailto:isaure.lohest@gmail.com">isaure.lohest@gmail.com</a>
+            </p>
+            <p class="contact-note">
+              Share the workflow, the friction point, or the outcome you want. A rough brief is
+              enough.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-form-panel">
+          <div
+            class="contact-status"
+            data-success-panel
+            data-tone="success"
+            hidden
+            aria-live="polite"
+          >
+            Sent. I’ll study your brief and reply with the smartest next step for your use case — usually within 24h.
+          </div>
+
+          <div
+            class="contact-status"
+            data-error-panel
+            data-tone="error"
+            hidden
+            aria-live="polite"
+          >
+            Something went wrong while sending your message. Please try again or email me directly.
+          </div>
+
+          <form
+            class="contact-form"
+            data-contact-form
+            data-state="idle"
+            data-firebase-api-key={firebaseConfig.apiKey}
+            data-firebase-auth-domain={firebaseConfig.authDomain}
+            data-firebase-project-id={firebaseConfig.projectId}
+            data-firebase-storage-bucket={firebaseConfig.storageBucket}
+            data-firebase-messaging-sender-id={firebaseConfig.messagingSenderId}
+            data-firebase-app-id={firebaseConfig.appId}
+          >
+            <div class="contact-field">
+              <label for="contact-name">Name</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                placeholder="Your name"
+              />
+            </div>
+
+            <div class="contact-field">
+              <label for="contact-email">Email</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                inputmode="email"
+                required
+                placeholder="Where should I send my reply?"
+              />
+            </div>
+
+            <div class="contact-field">
+              <label for="contact-message">Message</label>
+              <textarea
+                id="contact-message"
+                name="additionalInfo"
+                required
+                placeholder="What are you building, where should AI help, and what outcome matters most?"
+              ></textarea>
+            </div>
+
+            <div class="contact-submit-row">
+              <button class="contact-submit" type="submit" data-submit-button>Send</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+    <SiteFooter />
+  </div>
+  <div class="custom-cursor" aria-hidden="true"></div>
+
+  <script>
+    import '../scripts/contact-form.ts';
+  </script>
+  <script is:inline>
+    (() => {
+      const menuBtn = document.getElementById('nav-menu-btn');
+      const drawer = document.getElementById('nav-drawer');
+      const closeBtn = document.getElementById('nav-drawer-close');
+
+      function openDrawer() {
+        drawer?.classList.add('is-open');
+        drawer?.setAttribute('aria-hidden', 'false');
+        closeBtn?.classList.add('is-visible');
+        closeBtn?.setAttribute('aria-hidden', 'false');
+        menuBtn?.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        drawer?.classList.remove('is-open');
+        drawer?.setAttribute('aria-hidden', 'true');
+        closeBtn?.classList.remove('is-visible');
+        closeBtn?.setAttribute('aria-hidden', 'true');
+        menuBtn?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      menuBtn?.addEventListener('click', openDrawer);
+      closeBtn?.addEventListener('click', closeDrawer);
+
+      drawer?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeDrawer);
+      });
+
+      drawer?.addEventListener('click', (event) => {
+        if (event.target === drawer) closeDrawer();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && drawer?.classList.contains('is-open')) closeDrawer();
+      });
+    })();
+  </script>
+  <script is:inline>
+    const root = document.documentElement;
+    const paletteToggle = document.getElementById("palette-toggle");
+    const paletteStorageKey = "portfolio-palette-v2";
+    const customCursor = document.querySelector(".custom-cursor");
+
+    function setPalette(palette) {
+      const isWarm = palette === "warm";
+
+      if (isWarm) {
+        root.dataset.palette = "warm";
+      } else {
+        delete root.dataset.palette;
+      }
+
+      if (paletteToggle) {
+        paletteToggle.setAttribute("aria-pressed", String(isWarm));
+        paletteToggle.setAttribute(
+          "aria-label",
+          isWarm ? "Switch to dark palette" : "Switch to light palette",
+        );
+      }
+    }
+
+    let savedPalette = "warm";
+    try {
+      savedPalette = localStorage.getItem(paletteStorageKey) || "warm";
+    } catch (error) {
+      savedPalette = "warm";
+    }
+    setPalette(savedPalette === "warm" ? "warm" : "current");
+
+    paletteToggle?.addEventListener("click", () => {
+      const nextPalette =
+        root.dataset.palette === "warm" ? "current" : "warm";
+      setPalette(nextPalette);
+      try {
+        localStorage.setItem(paletteStorageKey, nextPalette);
+      } catch (error) {
+        // Palette preference is optional.
+      }
+    });
+
+    if (customCursor && window.matchMedia("(pointer: fine)").matches) {
+      window.addEventListener("mousemove", (event) => {
+        customCursor.classList.add("is-visible");
+        customCursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      });
+
+      window.addEventListener("mouseleave", () => {
+        customCursor.classList.remove("is-visible");
+      });
+
+      document.querySelectorAll("a, button, input, textarea").forEach((element) => {
+        element.addEventListener("mouseenter", () =>
+          customCursor.classList.add("is-hovering"),
+        );
+        element.addEventListener("mouseleave", () =>
+          customCursor.classList.remove("is-hovering"),
+        );
+      });
+    }
+  </script>
+</BaseLayout>

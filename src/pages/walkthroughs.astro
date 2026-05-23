@@ -1,19 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { breadcrumbSchema, professionalServiceSchema, websiteSchema } from '../data/seo';
 import '../styles/walkthroughs.css';
+import '../styles/shared-footer.css';
 
 const structuredData = [
+  websiteSchema,
+  professionalServiceSchema,
+  breadcrumbSchema([
+    { name: 'Home', url: 'https://ai.isaure-lohest.com/' },
+    { name: 'Walkthroughs', url: 'https://ai.isaure-lohest.com/walkthroughs/' },
+  ]),
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
+    '@id': 'https://ai.isaure-lohest.com/walkthroughs/#collection',
     name: 'AI Product Walkthroughs — Isaure Lohest',
     url: 'https://ai.isaure-lohest.com/walkthroughs/',
     description:
       'Interactive video walkthroughs of AI integration projects across legal routing, document analysis, lead scoring, and structured content ingestion.',
     isPartOf: {
-      '@type': 'WebSite',
-      url: 'https://ai.isaure-lohest.com/',
+      '@id': 'https://ai.isaure-lohest.com/#website',
+    },
+    about: {
+      '@id': 'https://ai.isaure-lohest.com/#ai-integration-service',
     },
   },
   {
@@ -63,9 +74,10 @@ const structuredData = [
         <a href="/#cases">Use cases</a>
         <a href="/#process">Process</a>
         <a href="/walkthroughs/" class="is-active">Walkthroughs</a>
-        <a href="mailto:isaure.lohest@gmail.com" class="nav-cta">Let's talk</a>
+        <a href="/contact/" class="nav-cta">Let's talk</a>
       </div>
       <div class="nav-mobile">
+        <a href="/" class="nav-mobile-wordmark">isaure lohest<span>.</span></a>
         <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Open menu" aria-expanded="false">
           <svg class="hamburger-icon" viewBox="0 0 24 24" aria-hidden="true">
             <line class="bar bar-top" x1="3" y1="7" x2="21" y2="7"/>
@@ -73,7 +85,7 @@ const structuredData = [
             <line class="bar bar-bot" x1="3" y1="17" x2="21" y2="17"/>
           </svg>
         </button>
-        <a href="mailto:isaure.lohest@gmail.com" class="nav-cta nav-cta-mobile">Let's talk</a>
+        <a href="/contact/" class="nav-cta nav-cta-mobile">Let's talk</a>
       </div>
     </nav>
     <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu" aria-hidden="true">
@@ -88,7 +100,7 @@ const structuredData = [
         <a href="/#process">Process</a>
         <a href="/walkthroughs/">Walkthroughs</a>
       </nav>
-      <a href="mailto:isaure.lohest@gmail.com" class="nav-drawer-cta">Let's talk →</a>
+      <a href="/contact/" class="nav-drawer-cta">Let's talk →</a>
     </div>
     <button
       type="button"
@@ -291,7 +303,7 @@ const structuredData = [
         operational constraints.
       </p>
       <div class="walkthrough-cta-actions">
-        <a class="walkthrough-cta-primary" href="mailto:isaure.lohest@gmail.com">
+        <a class="walkthrough-cta-primary" href="/contact/">
           Start a conversation
         </a>
       </div>

@@ -6,6 +6,7 @@ export interface Props {
   defaultPalette?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  keywords?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -16,6 +17,7 @@ const {
   defaultPalette,
   ogImage = '/favicon.png',
   ogImageAlt = 'Isaure Lohest AI portfolio',
+  keywords = 'AI integration engineer, AI workflow automation, AI SaaS integration, CRM enrichment, lead scoring, document analysis AI, request routing, internal AI tools',
   structuredData,
 } = Astro.props;
 
@@ -33,6 +35,7 @@ const themeColor = defaultPalette === 'warm' ? '#faf9f5' : '#141210';
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <meta
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -42,6 +45,7 @@ const themeColor = defaultPalette === 'warm' ? '#faf9f5' : '#141210';
     <meta name="publisher" content="Isaure Lohest" />
     <meta name="theme-color" content={themeColor} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="AI-readable site summary" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

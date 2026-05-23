@@ -1,37 +1,61 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { personSchema, professionalServiceSchema, websiteSchema } from '../data/seo';
 import '../styles/index.css';
+import '../styles/shared-footer.css';
 
 const structuredData = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Isaure Lohest',
-    jobTitle: 'AI Integration Engineer',
-    url: 'https://ai.isaure-lohest.com/',
-    image: 'https://ai.isaure-lohest.com/favicon.png',
-    sameAs: ['https://isaure-lohest.com/'],
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Isaure Lohest — AI Integration Engineer',
-    url: 'https://ai.isaure-lohest.com/',
-    description:
-      'AI integration engineering portfolio focused on SaaS workflows, messaging systems, CRM enrichment, and operational automation.',
-  },
+  personSchema,
+  websiteSchema,
+  professionalServiceSchema,
   {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
+    '@id': 'https://ai.isaure-lohest.com/#homepage',
     name: 'Isaure Lohest — AI Integration Engineer',
     url: 'https://ai.isaure-lohest.com/',
     description:
       'I build AI systems inside SaaS products, admin flows, CRMs, and messaging stacks — integrated into the way your product actually runs.',
-    isPartOf: {
-      '@type': 'WebSite',
-      url: 'https://ai.isaure-lohest.com/',
+    about: {
+      '@id': 'https://ai.isaure-lohest.com/#ai-integration-service',
     },
+    mainEntity: {
+      '@id': 'https://ai.isaure-lohest.com/#isaure-lohest',
+    },
+    isPartOf: {
+      '@id': 'https://ai.isaure-lohest.com/#website',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What does Isaure Lohest do?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Isaure Lohest is an AI Integration Engineer who designs and builds AI features inside SaaS products, admin workflows, CRMs, messaging systems, and operational tools.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What kinds of AI integrations are offered?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Services include AI inside SaaS dashboards, workflow automation, document extraction, lead scoring, CRM enrichment, request routing, semantic search, messaging alerts, and custom internal AI tools.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Who is this AI integration work for?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The work is for product teams, SaaS businesses, operations teams, sales teams, and service businesses that want AI added to existing workflows instead of adopting disconnected tools.',
+        },
+      },
+    ],
   },
 ];
 ---
@@ -53,10 +77,11 @@ const structuredData = [
         <a href="#cases">Use cases</a>
         <a href="#process">Process</a>
         <a href="/walkthroughs/">Walkthroughs</a>
-        <a href="#contact" class="nav-cta">Let's talk</a>
+        <a href="/contact/" class="nav-cta">Let's talk</a>
       </div>
       <!-- Mobile: pill compact -->
       <div class="nav-mobile">
+        <a href="#top" class="nav-mobile-wordmark">isaure lohest<span>.</span></a>
         <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Open menu" aria-expanded="false">
           <svg class="hamburger-icon" viewBox="0 0 24 24" aria-hidden="true">
             <line class="bar bar-top" x1="3" y1="7" x2="21" y2="7"/>
@@ -64,7 +89,7 @@ const structuredData = [
             <line class="bar bar-bot" x1="3" y1="17" x2="21" y2="17"/>
           </svg>
         </button>
-        <a href="#contact" class="nav-cta nav-cta-mobile">Let's talk</a>
+        <a href="/contact/" class="nav-cta nav-cta-mobile">Let's talk</a>
       </div>
     </nav>
     <!-- Close button: outside the drawer so it's above the opacity transition -->
@@ -81,7 +106,7 @@ const structuredData = [
         <a href="#process">Process</a>
         <a href="/walkthroughs/">Walkthroughs</a>
       </nav>
-      <a href="#contact" class="nav-drawer-cta">Let's talk →</a>
+      <a href="/contact/" class="nav-drawer-cta">Let's talk →</a>
     </div>
     <button
       type="button"
@@ -102,7 +127,7 @@ const structuredData = [
         <path d="M12 8.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6z" />
       </svg>
     </button>
-    <a href="#" class="corner-wordmark" aria-label="Back to top">
+    <a href="#top" class="corner-wordmark" aria-label="Back to top">
       <svg viewBox="0 0 560 230" role="img">
         <defs>
           <path
@@ -119,6 +144,7 @@ const structuredData = [
     </a>
 
     <!-- ── HERO ─────────────────────────────────────────────────── -->
+    <div id="top"></div>
     <div id="hero-wrapper">
       <div id="hero">
         <canvas id="starfield"></canvas>
@@ -335,7 +361,7 @@ const structuredData = [
             </p>
           </div>
           <a
-            href="#contact"
+            href="/contact/"
             class="services-footer-link"
             data-cursor-contrast="difference"
           >
@@ -886,8 +912,8 @@ const structuredData = [
           Most teams are already integrating AI into their workflows. See where
           it fits in yours — and what to build to create leverage.
         </p>
-        <a href="mailto:isaure.lohest@gmail.com" class="cta-btn">
-          Send your workflow →
+        <a href="/contact/" class="cta-btn">
+          Open the contact form →
         </a>
         <span class="cta-alt">
           Direct email:
@@ -989,6 +1015,7 @@ const structuredData = [
         // ── NAVIGATION SCROLL ───────────────────────────────────────
         const nav = document.getElementById("nav");
         const scrollHint = document.querySelector(".scroll-hint");
+        const cornerWordmark = document.querySelector(".corner-wordmark");
         const cornerWordmarkPath = document.getElementById(
           "corner-wordmark-path",
         );
@@ -1021,6 +1048,7 @@ const structuredData = [
           start: 60,
           onUpdate: (self) => {
             nav.classList.toggle("scrolled", self.scroll() > 60);
+            cornerWordmark?.classList.toggle("is-scrolled", self.scroll() > 60);
             scrollHint?.classList.toggle("is-hidden", self.scroll() > 4);
           },
         });

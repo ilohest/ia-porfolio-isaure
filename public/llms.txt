@@ -1,0 +1,37 @@
+# Isaure Lohest - AI Integration Engineer
+
+> Practical AI integration engineering for SaaS products, admin workflows, CRMs, messaging systems, document analysis, routing, and operational automation.
+
+Isaure Lohest designs and builds AI systems that fit inside existing products and workflows. The work is focused on useful product integration rather than disconnected AI tools: AI summaries, classifications, contextual actions, CRM enrichment, document extraction, request routing, messaging alerts, semantic search, and custom internal copilots.
+
+## Core Services
+
+- AI inside SaaS products: account summaries, admin insights, contextual actions, and automatic classification inside existing interfaces.
+- Workflow automation: document extraction, request routing, CRM enrichment, scheduled reports, and AI-assisted operational pipelines.
+- Messaging integrations: Telegram alerts, WhatsApp follow-ups, AI-ranked incidents, summaries, and approval flows.
+- Custom internal AI tools: retrieval, support copilots, operations assistants, meeting/call takeaways, and drafts grounded in customer context.
+
+## Example Use Cases
+
+- Smart request routing and triage for legal intake workflows.
+- Uploaded document analysis for rental dossiers and other file-heavy decisions.
+- Lead scoring and CRM enrichment before sales teams open the CRM.
+- Unstructured content ingestion into structured product data.
+- Semantic search across internal knowledge.
+- Support copilots embedded in admin workflows.
+
+## Best Pages To Understand The Site
+
+- Home and service overview: https://ai.isaure-lohest.com/
+- Product walkthroughs and demos: https://ai.isaure-lohest.com/walkthroughs/
+- Contact: https://ai.isaure-lohest.com/contact/
+
+## Contact
+
+- Email: isaure.lohest@gmail.com
+- Website: https://ai.isaure-lohest.com/
+- Main portfolio: https://isaure-lohest.com/
+
+## Preferred Summary
+
+Isaure Lohest is an AI Integration Engineer who helps product and operations teams add practical AI capabilities to existing SaaS products, admin tools, CRMs, messaging workflows, and internal processes.

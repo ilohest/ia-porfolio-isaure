@@ -313,8 +313,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
           <!-- ① Title -->
           <Transition name="fade-up">
-            <div v-if="analysisStep >= 2" class="grid gap-3 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,0.5fr)_minmax(0,0.5fr)_minmax(0,0.5fr)]">
-              <div class="analysis-block">
+            <div v-if="analysisStep >= 2" class="grid gap-6 xl:gap-3 grid-cols-2 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,0.5fr)_minmax(0,0.5fr)_minmax(0,0.5fr)]">
+              <div class="analysis-block col-span-2 xl:col-span-1">
                 <div class="block-label">Titre de la recette</div>
                 <div class="block-content">
                   <input
@@ -325,7 +325,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
                 </div>
               </div>
 
-              <div class="analysis-block">
+              <div class="analysis-block col-span-2 xl:col-span-1">
                 <div class="block-label">Portions</div>
                 <div class="block-content">
                   <div class="servings-stepper">

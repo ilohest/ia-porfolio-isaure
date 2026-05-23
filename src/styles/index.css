@@ -96,7 +96,7 @@
   --wordmark-blend: screen;
   --radius: 12px;
   --radius-lg: 20px;
-  --hero-top-bleed: 24px;
+  --hero-top-bleed: 26px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --font-title:
     "OrticaLinear", "OrticaLinear-Light", "Ortica Linear Light", serif;
@@ -127,15 +127,15 @@
   --toggle-glass-shine: rgba(255, 255, 255, 0.9);
   --sticker-bg: rgba(255, 255, 255, 0.86);
   --sticker-text: rgba(20, 20, 19, 0.76);
-  --hero-vignette-mid: rgba(250, 249, 245, 0.24);
-  --hero-vignette-edge: rgba(250, 249, 245, 0.64);
-  --hero-glow-core-1: rgba(255, 151, 82, 0.16);
-  --hero-glow-core-2: rgba(255, 151, 82, 0.11);
-  --hero-glow-core-3: rgba(255, 151, 82, 0.075);
-  --hero-glow-core-4: rgba(255, 151, 82, 0.035);
-  --hero-glow-core-5: rgba(255, 151, 82, 0.012);
-  --hero-glow-color: rgba(255, 151, 82, 0.12);
-  --hero-glow-ring: rgba(255, 151, 82, 0.028);
+  --hero-vignette-mid: rgba(250, 249, 245, 0.12);
+  --hero-vignette-edge: rgba(250, 249, 245, 0.28);
+  --hero-glow-core-1: rgba(255, 151, 82, 0.2);
+  --hero-glow-core-2: rgba(255, 151, 82, 0.145);
+  --hero-glow-core-3: rgba(255, 151, 82, 0.1);
+  --hero-glow-core-4: rgba(255, 151, 82, 0.052);
+  --hero-glow-core-5: rgba(255, 151, 82, 0.02);
+  --hero-glow-color: rgba(255, 151, 82, 0.16);
+  --hero-glow-ring: rgba(255, 151, 82, 0.04);
   --theme-glow-strong: rgba(255, 151, 82, 0.72);
   --theme-glow-soft: rgba(255, 151, 82, 0.34);
   --theme-glow-wide: rgba(255, 151, 82, 0.22);
@@ -283,6 +283,10 @@ body {
   pointer-events: none;
   mix-blend-mode: var(--wordmark-blend);
   overflow: visible;
+  transition: top 0.28s ease;
+}
+.corner-wordmark.is-scrolled {
+  top: 10px;
 }
 .corner-wordmark svg {
   width: 100%;
@@ -450,13 +454,21 @@ body {
 #hero-wrapper {
   height: 350vh;
   position: relative;
+  margin-top: calc(-1 * var(--hero-top-bleed));
 }
 #hero {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: calc(100vh + var(--hero-top-bleed));
   overflow: hidden;
-  background: var(--canvas-bg);
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      color-mix(in srgb, var(--hero-glow-color) 78%, transparent) 0%,
+      color-mix(in srgb, var(--hero-glow-core-3) 82%, transparent) 28%,
+      transparent 72%
+    ),
+    var(--canvas-bg);
 }
 #starfield {
   position: absolute;
@@ -471,9 +483,9 @@ body {
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    ellipse at center,
-    transparent 20%,
-    var(--hero-vignette-mid) 65%,
+    ellipse at 50% 42%,
+    transparent 28%,
+    var(--hero-vignette-mid) 70%,
     var(--hero-vignette-edge) 100%
   );
   pointer-events: none;
@@ -482,13 +494,13 @@ body {
 /* Center glow — the "light at the center of the tunnel" */
 .hero-glow {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(72vw, 78rem);
-  height: min(72vw, 78rem);
-  min-width: 44rem;
-  min-height: 44rem;
+  width: min(90vw, 110rem);
+  height: min(90vw, 110rem);
+  min-width: 64rem;
+  min-height: 64rem;
   border-radius: 50%;
   background:
     radial-gradient(
@@ -2040,7 +2052,9 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: opacity 0.28s ease, transform 0.28s ease;
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
 }
 .faq-icon::before {
   content: "+";
@@ -2264,6 +2278,11 @@ footer {
   align-items: flex-start;
   gap: clamp(28px, 6vw, 84px);
 }
+.footer-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .footer-meta {
   display: flex;
   flex-direction: column;
@@ -2293,12 +2312,14 @@ footer span {
   border-color: var(--footer-link-border-hover);
 }
 .footer-name {
+  display: inline-flex;
   font-family: var(--font-title);
   font-size: clamp(22px, 3vw, 34px);
   font-weight: 300;
   letter-spacing: -0.025em;
   line-height: 1.05;
   color: var(--text);
+  text-decoration: none;
 }
 .footer-email {
   display: inline-flex;
@@ -2311,6 +2332,32 @@ footer span {
 }
 .footer-email:hover {
   color: var(--footer-link);
+}
+.footer-talk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--nav-cta-border);
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+.footer-talk-btn:hover {
+  background: var(--nav-cta-bg-hover);
+  border-color: var(--nav-cta-border-hover);
+  color: var(--text);
+  transform: translateY(-1px);
 }
 .footer-links {
   display: grid;
@@ -2363,15 +2410,19 @@ footer span {
 }
 @media (max-width: 768px) {
   #nav {
-    top: 12px;
+    top: max(env(safe-area-inset-top, 0px), 16px);
+    left: 0;
+    right: 0;
     padding: 0 12px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    z-index: 220;
+    transform: translateZ(0);
+    will-change: transform;
   }
   .corner-wordmark {
-    width: 220px;
-    height: 98px;
-  }
-  .corner-wordmark text {
-    font-size: 54px;
+    display: none;
   }
 
   /* Hide desktop pill, show mobile pill */
@@ -2381,17 +2432,38 @@ footer span {
   .nav-mobile {
     display: flex;
     align-items: center;
-    gap: 0;
-    padding: 5px 5px 5px 14px;
+    gap: 8px;
+    max-width: calc(100vw - 24px);
+    margin-left: auto;
+    padding: 5px 5px 5px 12px;
     background: var(--nav-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
+    box-sizing: border-box;
     backdrop-filter: blur(18px);
     box-shadow: 0 14px 50px var(--surface-shadow);
     pointer-events: auto;
+    flex-shrink: 0;
     transition:
       background var(--transition),
       border-color var(--transition);
+  }
+  .nav-mobile-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    margin-right: auto;
+    min-width: 0;
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--font-title);
+    font-size: 25px;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .nav-mobile-wordmark span {
+    color: var(--accent);
   }
   #nav.scrolled .nav-mobile {
     background: var(--nav-bg-scrolled);
@@ -2452,6 +2524,8 @@ footer span {
     border-radius: 6px;
     line-height: 1;
     text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 1;
     transition:
       color var(--transition),
       border-color var(--transition),
@@ -2468,11 +2542,14 @@ footer span {
     flex-direction: column;
     position: fixed;
     inset: 0;
+    height: 100dvh;
     z-index: 150;
     background: var(--nav-bg-scrolled);
     backdrop-filter: blur(28px) saturate(1.2);
     -webkit-backdrop-filter: blur(28px) saturate(1.2);
     padding: 28px 32px 48px;
+    overflow: hidden;
+    overscroll-behavior: none;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-10px);
@@ -2531,7 +2608,8 @@ footer span {
   .nav-drawer-links {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
     justify-content: center;
     gap: 0;
   }
@@ -2760,17 +2838,22 @@ footer span {
   .footer-main {
     width: 100%;
     justify-content: space-between;
+    align-items: flex-start;
+  }
+  .footer-links {
+    grid-template-columns: 1fr;
+    justify-content: end;
+    justify-items: end;
+    text-align: right;
+  }
+  .footer-talk-btn {
+    margin-top: 14px;
   }
   .footer-meta {
     gap: 10px;
     width: 100%;
     margin-left: 0;
     justify-content: flex-start;
-  }
-  .footer-links {
-    justify-content: flex-start;
-    grid-template-columns: repeat(2, minmax(110px, 1fr));
-    column-gap: 16px;
   }
   .chips {
     gap: 6px;
